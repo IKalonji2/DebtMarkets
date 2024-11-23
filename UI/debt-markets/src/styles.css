@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: Uchronia;
+  src: url('./assets/Uchronia-font/UchronyRegular-ZVlV3.ttf');
+}
+
+@font-face {
+  font-family: UchroniaBold;
+  src: url('./assets/Uchronia-font/UchronyBold-EaRaW.ttf');
+}
+
+@font-face {
+  font-family: UchroniaLight;
+  src: url('./assets/Uchronia-font/UchronyLight-OV7V6.ttf');
+}
+
