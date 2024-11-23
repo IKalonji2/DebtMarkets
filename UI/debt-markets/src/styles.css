@@ -13,3 +13,10 @@
   src: url('./assets/Uchronia-font/UchronyLight-OV7V6.ttf');
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  letter-spacing: .063rem;
+  height: 100vh;
+}
