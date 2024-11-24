@@ -4,6 +4,7 @@ import { LandingComponent } from './landing/landing.component';
 import { GetStartedComponent } from './get-started/get-started.component';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
@@ -15,8 +16,12 @@ const routes: Routes = [
     component: LandingComponent
   },
   {
-    path: 'register',
+    path: 'get-started',
     component: GetStartedComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'login',

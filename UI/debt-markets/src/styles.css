@@ -13,20 +13,24 @@
   src: url('./assets/Uchronia-font/UchronyLight-OV7V6.ttf');
 }
 
-html, body {
+html,
+body {
+  scroll-behavior: smooth;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  letter-spacing: .063rem;
   height: 100%;
-  background-image: linear-gradient(to right, 	#200589, 	#3d144c);
+  overflow: hidden;
+}
+
+body {
+  background-image: linear-gradient(to right, #200589, #3d144c);
+  display: flex;
+  flex-direction: column;
+  scroll-snap-type: y mandatory;
 }
 
 .landing-page,
 .get-started-page {
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-
   scroll-snap-align: start;
   width: 100%;
   min-height: 100vh;
@@ -58,4 +62,21 @@ html, body {
   font-family: UchroniaLight;
   font-size: 1.5rem;
   color: white;
+}
+
+.get-started-page {
+  opacity: 0.9;
+}
+
+.landing-page:hover,
+.get-started-page:hover {
+  transform: translateY(0);
+  opacity: 1;
+}
+@media (max-width: 768px) {
+  .landing-page,
+  .get-started-page,
+  .other-sections {
+    justify-content: flex-start;
+  }
 }

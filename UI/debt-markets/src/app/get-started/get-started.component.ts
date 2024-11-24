@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 })
 export class GetStartedComponent {
 
-  numberOfCards = [1,2,3];
+  numberOfCards = ['Lender','Collection','Trader'];
+  images = ['../../assets/images/lender.png']
 }

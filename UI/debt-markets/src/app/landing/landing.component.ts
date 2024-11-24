@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -6,7 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './landing.component.css'
 })
 export class LandingComponent {
-
   slideshowItems = [
     {
       image: './assets/images/online-auction.svg',
@@ -86,7 +86,7 @@ export class LandingComponent {
   activeIndex = 0;
   intervalId: any;
 
-  constructor() {
+  constructor(private router: Router) {
     this.startAutoplay();
   }
 
@@ -114,5 +114,14 @@ export class LandingComponent {
   goToSlide(index: number) {
     this.activeIndex = index;
   }
+
+  navigateToGetStarted(): void {
+    this.router.navigate(['/get-started']);
+  }
+
+  navigateToLogin(): void {
+    this.router.navigate(['/login']);
+  }
+
 
 }

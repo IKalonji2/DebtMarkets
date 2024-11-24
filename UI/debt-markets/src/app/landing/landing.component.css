@@ -77,6 +77,29 @@
   overflow: hidden;
 }
 
+.button-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  /* margin-top: 1rem; */
+}
+
+.button-wrapper button {
+  color: black;
+  font-family: Uchronia;
+
+  background-color: aquamarine;
+  box-shadow: 0 4px 6px whitesmoke;
+
+  width: 150px;
+  height: 50px;
+
+  &:hover {
+    background-color: aqua;
+  }
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .item-content {

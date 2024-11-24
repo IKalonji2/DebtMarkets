@@ -9,6 +9,10 @@ import { LandingComponent } from './landing/landing.component';
 import { GetStartedComponent } from './get-started/get-started.component';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
+import { AuctionsViewComponent } from './auctions-view/auctions-view.component';
+import { TradingViewComponent } from './trading-view/trading-view.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { AboutComponent } from './about/about.component';
     LandingComponent,
     GetStartedComponent,
     LoginComponent,
-    AboutComponent
+    AboutComponent,
+    AuctionsViewComponent,
+    TradingViewComponent,
+    SideNavComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

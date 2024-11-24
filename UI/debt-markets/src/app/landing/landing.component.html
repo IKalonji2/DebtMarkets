@@ -12,7 +12,7 @@
         >
           <div class="item-content">
             <div class="item-image-container">
-              <img class="item-image" [src]="item.image" alt="Slide Image" />
+              <img class="item-image" [src]="item.image" alt="item.title" />
             </div>
             <div class="item-text">
               <div class="item-header">
@@ -36,6 +36,10 @@
         </ul>
       </div>
     </div>
+  </div>
+  <div class="button-wrapper">
+    <button (click)="navigateToGetStarted()">Get Started</button>
+    <button (click)="navigateToLogin()">Login</button>
   </div>
 </section>
 <app-get-started></app-get-started>
