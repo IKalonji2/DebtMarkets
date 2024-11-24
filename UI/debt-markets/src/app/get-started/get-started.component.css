@@ -1,0 +1,22 @@
+.get-started-page {
+  display: flex;
+  flex-direction: column;
+  font-family: Uchronia;
+}
+
+.card-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.card {
+  height: 350px;
+  width: 300px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px #0000001a;
+  margin-bottom: auto;
+}
