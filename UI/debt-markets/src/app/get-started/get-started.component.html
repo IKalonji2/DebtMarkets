@@ -2,17 +2,16 @@
   <div class="title-wrapper"><h1>Get started.</h1></div>
   <div class="subtitle-wrapper"><h2>I am a ...</h2></div>
   <div class="card-wrapper">
-    <div class="card" *ngFor="let miniCard of numberOfCards; let i = index">
+    <div class="card" *ngFor="let miniCard of nameOfCards; let i = index">
       <div class="title-wrapper"><h1>{{ miniCard }}</h1></div>
       <div class="something-wrapper" *ngFor="let item of images; let i = index">
         <div class="something"><img [src]="item" alt="lender"></div>
       </div>
       <div class="button-wrapper">
-        <button>Register</button>
+        <button [routerLink]="['/register']" (click)="setTitle(miniCard)">Register</button>
         <br>
-        <button>Login</button>
+        <button [routerLink]="['/login']" (click)="setTitle(miniCard)">Login</button>
       </div>
     </div>
   </div>
-  <br>
 </section>

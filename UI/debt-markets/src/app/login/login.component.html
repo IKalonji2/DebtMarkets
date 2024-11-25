@@ -1,1 +1,6 @@
-<p>login works!</p>
+<app-reusable-form
+  [config]="formConfig"
+  submitButtonText="Login"
+  (formSubmit)="handleFormSubmit($event)"
+>
+</app-reusable-form>

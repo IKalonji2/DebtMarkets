@@ -19,7 +19,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 body {
@@ -30,7 +30,8 @@ body {
 }
 
 .landing-page,
-.get-started-page {
+.get-started-page,
+.reusable-form {
   scroll-snap-align: start;
   width: 100%;
   min-height: 100vh;
@@ -69,7 +70,8 @@ body {
 }
 
 .landing-page:hover,
-.get-started-page:hover {
+.get-started-page:hover,
+.reusable-form {
   transform: translateY(0);
   opacity: 1;
 }

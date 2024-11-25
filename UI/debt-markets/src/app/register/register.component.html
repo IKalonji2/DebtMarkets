@@ -1,1 +1,6 @@
-<p>register works!</p>
+<app-reusable-form
+  [config]="formConfig"
+  submitButtonText="Register"
+  (formSubmit)="handleFormSubmit($event)"
+>
+</app-reusable-form>

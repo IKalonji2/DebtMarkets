@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { AuctionsViewComponent } from './auctions-view/auctions-view.component';
 import { TradingViewComponent } from './trading-view/trading-view.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { RegisterComponent } from './register/register.component';
+import { ReusableFormComponent } from './reusable-form/reusable-form.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +28,13 @@ import { RegisterComponent } from './register/register.component';
     AuctionsViewComponent,
     TradingViewComponent,
     SideNavComponent,
-    RegisterComponent
+    RegisterComponent,
+    ReusableFormComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
