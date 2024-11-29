@@ -5,6 +5,9 @@ import { GetStartedComponent } from './get-started/get-started.component';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { RegisterComponent } from './register/register.component';
+import { AuctionsViewComponent } from './auctions-view/auctions-view.component';
+import { TradingViewComponent } from './trading-view/trading-view.component';
+import { AuctionDetailsComponent } from './auction-details/auction-details.component';
 
 const routes: Routes = [
   {
@@ -31,6 +34,18 @@ const routes: Routes = [
     path: 'about',
     component: AboutComponent
   },
+  {
+    path: 'auctions',
+    component: AuctionsViewComponent
+  },
+  {
+    path: 'auction-details',
+    component: AuctionDetailsComponent
+  },
+  {
+    path: 'trading-view',
+    component: TradingViewComponent
+  }
 ];
 
 @NgModule({

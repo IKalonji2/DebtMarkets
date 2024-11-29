@@ -1,7 +1,11 @@
 .get-started-page {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   font-family: Uchronia;
+
+  padding: 2rem;
 }
 
 .card-wrapper {
@@ -12,13 +16,14 @@
 }
 
 .card {
-  height: 350px;
+  height: 300px;
   width: 300px;
   background-color: 	#222;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 4px 6px #0000001a;
-  margin-bottom: auto;
+  margin-right: 1rem;
+  padding: 1rem;
 }
 
 .something-wrapper {
@@ -62,8 +67,8 @@
   background-color: aquamarine;
   box-shadow: 0 4px 6px whitesmoke;
 
-  width: 150px;
-  height: 50px;
+  width: 100px;
+  height: 40px;
 
   &:hover {
     background-color: aqua;

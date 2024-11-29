@@ -1,0 +1,110 @@
+.auctions-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.card-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  width: calc(33.333% - 1rem);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+
+  text-align: center;
+
+}
+.card h3 {
+  font-family: UchroniaLight;
+}
+.expand-button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #b0fc6a;
+  color: black;
+  cursor: pointer;
+  font-family: Uchronia;
+}
+
+.expand-button:hover {
+  background-color: #7cfd04;
+}
+
+.toggle-button {
+  margin-top: 1rem;
+  color: black;
+  font-family: Uchronia;
+
+  background-color: aquamarine;
+  box-shadow: 0 4px 6px whitesmoke;
+
+  width: 100px;
+  height: 40px;
+
+  &:hover {
+    background-color: aqua;
+  }
+  cursor: pointer;
+}
+
+.card-details {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.card-table {
+  display: table;
+  width: 100%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow';
+}
+
+.table-row {
+  display: table-row;
+}
+
+.table-cell {
+  display: table-cell;
+  padding: 0.5rem 1rem;
+  vertical-align: top;
+}
+
+/* First column (labels) styling */
+.table-cell:first-child {
+  font-weight: bold;
+  color: #555;
+  width: 40%; /* Adjust as needed */
+}
+
+.description {
+  color: #555;
+  font-size: 1rem;
+  font-style: italic;
+  text-decoration: underline;
+  font-family: Uchronia;
+}
+.view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .card {
+    width: calc(100% - 1rem);
+  }
+}

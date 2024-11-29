@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./get-started.component.css']
 })
 export class GetStartedComponent {
-  nameOfCards = ['Lender', 'Collection', 'Trader'];
+  nameOfCards = ['Lender', 'Collector', 'Trader'];
   images = ['../../assets/images/lender.png'];
 
   constructor(private router: Router) {}

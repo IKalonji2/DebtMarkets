@@ -31,9 +31,11 @@ body {
 
 .landing-page,
 .get-started-page,
-.reusable-form {
+.reusable-form,
+.about-page,
+.auctions-page {
   scroll-snap-align: start;
-  width: 100%;
+  /* width: 100%; */
   min-height: 100vh;
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
   transform: translateY(20px);
@@ -43,26 +45,30 @@ body {
   display:flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
 }
 
 .title-wrapper h1 {
   font-family: UchroniaLight;
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: white;
+  text-align: center;
+  margin: auto auto 0.25rem auto;
 }
 
-.subtitle-wrapper {
+/* .subtitle-wrapper {
   display:flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
+} */
 
-.subtitle-wrapper h2 {
+.title-wrapper h2 {
   font-family: UchroniaLight;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: white;
+  text-align: center;
+  margin: auto auto 0.25rem auto;
 }
 
 .get-started-page {
@@ -71,14 +77,18 @@ body {
 
 .landing-page:hover,
 .get-started-page:hover,
-.reusable-form {
+.reusable-form,
+.about-page {
   transform: translateY(0);
   opacity: 1;
 }
 @media (max-width: 768px) {
   .landing-page,
   .get-started-page,
-  .other-sections {
+  .reusable-form,
+  .about-page {
     justify-content: flex-start;
+    padding: 1rem;
+
   }
 }

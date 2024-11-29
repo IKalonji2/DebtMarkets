@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 
 @Component({
@@ -6,9 +6,10 @@ import { Validators } from '@angular/forms';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
+  step: number = 1;
   formTitle: string = '';
-  formConfig = [
+  step1Config = [
     {
       name: 'email',
       type: 'email',
@@ -18,52 +19,15 @@ export class RegisterComponent {
       errorMessage: 'Email is required'
     },
     {
-      name: 'entity',
-      type: 'text',
-      label: 'Entity',
-      // placeholder: 'Entity',
-      value: '',
-      validators: [Validators.required],
-      errorMessage: 'Entity is required'
-    },
-    {
-      name: 'type',
-      type: 'text',
-      label: 'Type',
-      // placeholder: 'Type',
-      value: '',
-      validators: [Validators.required, Validators.email],
-      errorMessage: 'Type  is required'
-    },
-    {
-      name: 'certificate',
-      type: 'text',
-      label: 'Certificate Number',
-      // placeholder: 'Certificate Number',
-      value: '',
-      validators: [Validators.required, Validators.minLength(6)],
-      errorMessage: 'Invalid Certificate Number'
-    }
-    ,
-    {
-      name: 'region',
-      type: 'text',
-      label: 'Operating Region',
-      // placeholder: 'Operating Region',
-      value: '',
-      validators: [Validators.required, Validators.minLength(6)],
-      errorMessage: 'Operating region  is required'
-    },
-    {
       name: 'password',
       type: 'password',
       label: 'Password',
       value: '',
       validators: [Validators.required],
-      errorMessage: 'Password  is required'
+      errorMessage: 'Password is required'
     },
     {
-      name: 'confirm password',
+      name: 'passwordConfirmation',
       type: 'password',
       label: 'Confirm Password',
       value: '',
@@ -72,8 +36,48 @@ export class RegisterComponent {
     }
   ];
 
+  step2ConfigLender = [
+    {
+      name: 'businessName',
+      type: 'text',
+      label: 'Business Name',
+      value: '',
+      validators: [Validators.required],
+      errorMessage: 'Business Name is required'
+    },
+    {
+      name: 'certificate',
+      type: 'text',
+      label: 'Certificate Number',
+      value: '',
+      validators: [Validators.required, Validators.minLength(6)],
+      errorMessage: 'Invalid Certificate Number'
+    }
+  ];
+
+  step2ConfigCollector = [
+    {
+      name: 'entity',
+      type: 'text',
+      label: 'Entity Name',
+      value: '',
+      validators: [Validators.required],
+      errorMessage: 'Entity Name is required'
+    },
+    {
+      name: 'region',
+      type: 'text',
+      label: 'Operating Region',
+      value: '',
+      validators: [Validators.required],
+      errorMessage: 'Operating Region is required'
+    }
+  ];
+
+  formConfig = this.step1Config;
+
   ngOnInit() {
-    this.formTitle = localStorage.getItem('formTitle') || 'Lender / Collector Form';
+    this.formTitle = localStorage.getItem('formTitle') || 'Lender / Collector Registration';
 
     if (this.formTitle === 'Trader') {
       this.formConfig = [
@@ -81,10 +85,9 @@ export class RegisterComponent {
           name: 'names',
           type: 'text',
           label: 'Full Names',
-          // placeholder: 'Entity',
           value: '',
           validators: [Validators.required],
-          errorMessage: 'Full Names is required'
+          errorMessage: 'Full names are required'
         },
         {
           name: 'email',
@@ -103,7 +106,7 @@ export class RegisterComponent {
           errorMessage: 'Password  is required'
         },
         {
-          name: 'confirm password',
+          name: 'passwordConfirmation',
           type: 'password',
           label: 'Confirm Password',
           value: '',
@@ -115,7 +118,27 @@ export class RegisterComponent {
   };
 
   handleFormSubmit(values: any): void {
-    console.log('Form Submitted:', values);
+    if (this.formTitle !== 'Trader') {
+      if (this.step === 1) {
+        console.log('Step 1 Data:', values);
+        this.nextStep();
+      } else {
+        console.log('Step 2 Data:', values);
+        console.log('Form Submitted Successfully!');
+      }
+    }
+  }
+  nextStep(): void {
+    if (this.step === 1) {
+      this.step = 2;
+      this.formConfig = this.formTitle === 'Lender' ? this.step2ConfigLender : this.step2ConfigCollector;
+    }
+  }
+  previousStep(): void {
+    if (this.step === 2) {
+      this.step = 1;
+      this.formConfig = this.step1Config;
+    }
   }
 
 }
