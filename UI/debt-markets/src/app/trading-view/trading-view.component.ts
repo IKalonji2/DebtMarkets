@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './trading-view.component.css'
 })
 export class TradingViewComponent {
+  isSideNavOpen = false;
 
+  toggleSideNav() {
+    this.isSideNavOpen = !this.isSideNavOpen;
+  }
 }

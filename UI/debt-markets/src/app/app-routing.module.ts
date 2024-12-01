@@ -43,7 +43,7 @@ const routes: Routes = [
     component: AuctionDetailsComponent
   },
   {
-    path: 'trading-view',
+    path: 'trading',
     component: TradingViewComponent
   }
 ];
