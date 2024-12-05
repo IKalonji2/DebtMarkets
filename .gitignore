@@ -130,5 +130,5 @@ dist
 .pnp.*
 
 # Databases
-./API/auth-node/auth.db
-./API/debt-markets-node/debt_markets.db
+API/auth-node/auth.db
+API/debt-markets-node/debt_markets.db

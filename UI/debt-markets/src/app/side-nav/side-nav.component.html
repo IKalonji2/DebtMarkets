@@ -1,6 +1,0 @@
-<div class="side-nav" [class.open]="isOpen">
-  <ul *ngIf="menuItems.length > 0">
-    <li *ngFor="let item of menuItems">{{ item }}</li>
-  </ul>
-  <ng-content *ngIf="menuItems.length === 0"></ng-content>
-</div>

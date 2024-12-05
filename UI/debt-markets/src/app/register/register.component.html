@@ -1,9 +1,0 @@
-<section class="registration">
-  <app-reusable-form
-  [config]="formConfig"
-  [submitButtonText]="step === 1 ? 'Next' : 'Register'"
-  (formSubmit)="handleFormSubmit($event)"
->
-</app-reusable-form>
-<button *ngIf="step === 2" type="button" (click)="previousStep()">Back</button>
-</section>
