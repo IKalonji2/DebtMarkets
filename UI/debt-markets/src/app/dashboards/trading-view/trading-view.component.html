@@ -1,0 +1,12 @@
+<section class="trading-view">
+  <button class="toggle-nav-btn" (click)="toggleSideNav()">&#9776;</button>
+  <app-side-nav [isOpen]="isSideNavOpen" [class.open]="isSideNavOpen">
+    <ul>
+      <li>Overview</li>
+      <li>Performance</li>
+      <li>Tokens</li>
+      <li>Settings</li>
+    </ul>
+  </app-side-nav>
+  <app-trading-chart></app-trading-chart>
+</section>

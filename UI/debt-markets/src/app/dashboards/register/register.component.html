@@ -1,0 +1,24 @@
+<section class="registration">
+  <!-- Multi-step form for Lender/Collector -->
+  <ng-container *ngIf="formTitle !== 'Trader'">
+    <app-reusable-form
+      [config]="formConfig"
+      [formTitle]="formTitle"
+      [submitButtonText]="currentStep === 1 ? 'Next' : 'Register'"
+      (formSubmit)="handleFormSubmit($event)"
+    >
+    </app-reusable-form>
+    <button *ngIf="currentStep === 2" type="button" (click)="previousStep()">Back</button>
+  </ng-container>
+
+  <!-- Single-step form for Trader -->
+  <ng-container *ngIf="formTitle === 'Trader'">
+    <app-reusable-form
+      [config]="formConfig"
+      [formTitle]="formTitle"
+      [submitButtonText]="'Register'"
+      (formSubmit)="handleFormSubmit($event)"
+    >
+    </app-reusable-form>
+  </ng-container>
+</section>
