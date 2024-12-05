@@ -1,0 +1,33 @@
+<section class="reusable-form">
+  <div class="form-card">
+    <div class="title-wrapper"><p>{{ formTitle }}</p></div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-fields" *ngFor="let field of config">
+        <label [for]="field.name">{{ field.label }}</label>
+        <input
+          *ngIf="field.type !== 'select'"
+          [type]="field.type"
+          [id]="field.name"
+          [formControlName]="field.name"
+        >
+        <select
+          *ngIf="field.type === 'select'"
+          [id]="field.name"
+          [formControlName]="field.name"
+        >
+          <option *ngFor="let option of field.options" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <div>
+          <span class="error-mgs" *ngIf="form.get(field.name)?.invalid && form.get(field.name)?.touched">
+            {{ field.errorMessage }}
+          </span>
+        </div>
+      </div>
+      <div class="button-wrapper">
+        <button type="submit" [disabled]="form.invalid">{{ submitButtonText }}</button>
+      </div>
+    </form>
+  </div>
+</section>

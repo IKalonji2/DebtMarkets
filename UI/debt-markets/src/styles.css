@@ -34,12 +34,13 @@ body {
 .reusable-form,
 .about-page,
 .auctions-page,
-.trading-view {
+.trading-view,
+.trades {
   scroll-snap-align: start;
   /* width: 100%; */
   min-height: 100vh;
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-  transform: translateY(0);
+  transform: translateY(20px);
 }
 
 .title-wrapper {
@@ -79,8 +80,9 @@ body {
 .landing-page:hover,
 .get-started-page:hover,
 .reusable-form,
-.about-page
-.trading-view  {
+.about-page,
+.trading-view ,
+.trades {
   transform: translateY(0);
   opacity: 1;
 }
@@ -88,8 +90,9 @@ body {
   .landing-page,
   .get-started-page,
   .reusable-form,
-  .about-page
-  .trading-view {
+  .about-page,
+  .trading-view,
+  .trades {
     justify-content: flex-start;
     padding: 1rem;
 

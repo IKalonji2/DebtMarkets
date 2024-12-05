@@ -1,0 +1,34 @@
+.about-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Uchronia;
+  box-sizing: border-box;
+}
+.content-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.info {
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  background-color: #2f4f4f7a;
+  border: solid 2px #2f4f4f93;
+  width: 400px;
+  height: auto;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.inner-info {
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
