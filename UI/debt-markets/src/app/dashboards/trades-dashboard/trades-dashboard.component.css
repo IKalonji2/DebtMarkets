@@ -1,0 +1,70 @@
+.trades {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.low-risk {
+  color: green;
+}
+
+.medium-risk {
+  color: orange;
+}
+
+.high-risk {
+  color: red;
+}
+
+.good-performance {
+  color: green;
+}
+
+.bad-performance {
+  color: red;
+}
+
+.neutral-performance {
+  color: gray;
+}
+
+.fas {
+  margin-left: 5px;
+}
+
+.fas.fa-arrow-up {
+  color: green;
+}
+
+.fas.fa-arrow-down {
+  color: red;
+}
+
+.fas.fa-minus {
+  color: gray;
+}
+
+button {
+  padding: 8px 16px;
+  background-color: blue;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: darkblue;
+}
