@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { LandingComponent } from './dashboards/landing/landing.component';
 import { GetStartedComponent } from './dashboards/get-started/get-started.component';
 import { LoginComponent } from './dashboards/login/login.component';
@@ -12,18 +13,9 @@ import { TradesDashboardComponent } from './dashboards/trades-dashboard/trades-d
 import { LenderDashboardComponent } from './dashboards/lender-dashboard/lender-dashboard.component';
 import { CollectionAgentDashboardComponent } from './dashboards/collection-agent-dashboard/collection-agent-dashboard.component';
 import { TraderDashboardComponent } from './dashboards/trader-dashboard/trader-dashboard.component';
-import { RoleGuard } from './guards/role.guard';
+// import { roleGuard } from './guards/role.guard';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: '/home',
-  //   pathMatch: 'full'
-  // },
-  // {
-  //   path: '**',
-  //   redirectTo: '/home'
-  // },
   {
     path: '',
     component: LandingComponent
@@ -65,20 +57,19 @@ const routes: Routes = [
     component: TradesDashboardComponent
   },
   {
+    path: 'trader-dashboard',
+    component: TraderDashboardComponent,
+    // canActivate: [roleGuard('trader')]
+  },
+  {
+    path: 'collector-dashboard',
+    component: CollectionAgentDashboardComponent,
+    // canActivate: [roleGuard('collector')]
+  },
+  {
     path: 'lender-dashboard',
     component: LenderDashboardComponent,
-    canActivate: [RoleGuard],
-    data: { role: 'lender' }
-  },
-  { path: 'collection-agent-dashboard',
-    component: CollectionAgentDashboardComponent,
-    canActivate: [RoleGuard],
-    data: { role: 'collection-agent' }
-  },
-  { path: 'trader-dashboard',
-    component: TraderDashboardComponent,
-    canActivate: [RoleGuard],
-    data: { role: 'trader' }
+    // canActivate: [roleGuard('lender')]
   }
 ];
 

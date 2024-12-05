@@ -28,30 +28,46 @@ export class AuthService {
     document.cookie = `${this.tokenKey}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
     this.router.navigate(['/login']);
   }
-
-  redirectBasedOnRole(token: string): void {
+  redirectBasedOnRole(accessToken: string): void {
     try {
-      const decodedToken: any = jwtDecode(token);
+      const decodedToken = jwtDecode(accessToken) as any;
+      console.log('Decoded Token:', decodedToken);
       const role = decodedToken.role;
+      console.log('Role:', role);
 
-      this.storeToken(token);
-
-      switch (role) {
-        case 'lender':
-          this.router.navigate(['/lender-dashboard']);
-          break;
-        case 'collector':
-          this.router.navigate(['/collection-agent-dashboard']);
-          break;
-        case 'trader':
-          this.router.navigate(['/trader-dashboard']);
-          break;
-        default:
-          this.router.navigate(['/']);
+      if (role === 'collector') {
+        this.router.navigate(['/collector-dashboard']);
+      } else if (role === 'lender') {
+        this.router.navigate(['/lender-dashboard']);
+      } else if (role === 'trader') {
+        console.log(role === 'trader');
+        this.router.navigate(['/trader-dashboard']);
+      } else {
+        throw new Error(`Unknown role: ${role}`);
       }
     } catch (error) {
       console.error('Error decoding JWT:', error);
-      this.logout();
+      this.router.navigate(['/login']);
     }
   }
+
+  // redirectBasedOnRole(accessToken: string): void {
+  //   try {
+  //     const decodedToken = jwtDecode(accessToken) as any; // Ensure jwtDecode is working correctly
+  //     const role = decodedToken.role;
+
+  //     if (role === 'collector') {
+  //       this.router.navigate(['/collector-dashboard']);
+  //     } else if (role === 'lender') {
+  //       this.router.navigate(['/lender-dashboard']);
+  //     } else if (role === 'trader') {
+  //       this.router.navigate(['/trader-dashboard']);
+  //     } else {
+  //       throw new Error('Unknown role');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error decoding JWT:', error);
+  //     this.router.navigate(['/login']);
+  //   }
+  // }
 }

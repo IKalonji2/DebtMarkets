@@ -127,7 +127,6 @@ export class RegisterComponent implements OnInit {
         }
       ];
     } else {
-      // Multi-step forms for Lender/Collector start with Step 1 configuration
       this.formConfig = this.step1Config;
     }
   }

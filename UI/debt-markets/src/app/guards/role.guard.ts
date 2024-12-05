@@ -1,29 +1,38 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, Router } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth-service/auth.service';
+import { jwtDecode } from 'jwt-decode';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class RoleGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+export const roleGuard = (expectedRole: string) => {
+  return () => {
+    const authService = inject(AuthService);
+    const router = inject(Router);
 
-  canActivate(route: ActivatedRouteSnapshot): boolean {
-    const token = this.authService.getToken();
+
+    const token = authService.getToken();
+
     if (!token) {
-      this.router.navigate(['/login']);
+      console.error('No token found, redirecting to login.');
+      router.navigate(['/login']);
       return false;
     }
 
-    const decodedToken: any = jwtDecode(token);
-    const requiredRole = route.data['role'];
+    try {
+      const decodedToken = jwtDecode(token) as any;
 
-    if (decodedToken.role !== requiredRole) {
-      this.router.navigate(['/']);
+      const userRole = decodedToken?.role;
+
+      if (userRole === expectedRole) {
+        return true;
+      }
+
+      console.warn('Role mismatch. Redirecting to home.');
+      router.navigate(['/']);
+      return false;
+    } catch (error) {
+      console.error('Error decoding token in Guard:', error);
+      router.navigate(['/login']);
       return false;
     }
-
-    return true;
-  }
-}
+  };
+};

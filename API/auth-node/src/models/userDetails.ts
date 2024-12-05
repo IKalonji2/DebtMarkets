@@ -5,7 +5,7 @@ import User from "./user";
 class UserDetails extends Model {
   public id!: number;
   public userId!: number;
-  public additionalInfo!: string; // Replace with specific fields as needed
+  public additionalInfo!: object; 
 }
 
 UserDetails.init(
@@ -24,9 +24,16 @@ UserDetails.init(
       },
     },
     additionalInfo: {
-      type: DataTypes.TEXT, // Adjust based on your additional data needs
+      type: DataTypes.TEXT,
       allowNull: true,
-    },
+      get() {
+        const rawValue = this.getDataValue("additionalInfo");
+        return rawValue ? JSON.parse(rawValue) : null;
+      },
+      set(value: object) {
+        this.setDataValue("additionalInfo", JSON.stringify(value));
+      },
+    },    
   },
   {
     sequelize,
@@ -35,7 +42,6 @@ UserDetails.init(
   }
 );
 
-// Define association
 User.hasOne(UserDetails, { foreignKey: "userId", as: "details" });
 UserDetails.belongsTo(User, { foreignKey: "userId" });
 

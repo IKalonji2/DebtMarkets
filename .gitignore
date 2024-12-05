@@ -132,3 +132,6 @@ dist
 # Databases
 API/auth-node/auth.db
 API/debt-markets-node/debt_markets.db
+
+#Enviroment file
+API/auth-node/src/.env

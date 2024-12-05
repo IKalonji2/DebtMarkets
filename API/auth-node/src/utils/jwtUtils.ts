@@ -1,14 +1,25 @@
 import jwt from "jsonwebtoken";
 
-const SECRET_KEY = "your_secret_key";
 
 export const createJWT = (payload: object): string => {
-  return jwt.sign(payload, SECRET_KEY, { expiresIn: "30m" });
+  const secret = "process.env.JWT_SECRET";
+
+
+  if (!secret) {
+    throw new Error("JWT_SECRET is not defined in environment variables");
+  }
+  return jwt.sign(payload, secret, { expiresIn: "2h" });
 };
+
 
 export const verifyJWT = (token: string): any | null => {
   try {
-    return jwt.verify(token, SECRET_KEY);
+    const secret = "process.env.JWT_SECRET";
+
+    if (!secret) {
+      throw new Error("JWT_SECRET is not defined in environment variables");
+    }
+    return jwt.verify(token, secret);
   } catch {
     return null;
   }
