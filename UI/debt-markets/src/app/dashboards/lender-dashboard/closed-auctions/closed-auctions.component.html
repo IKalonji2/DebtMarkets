@@ -1,0 +1,17 @@
+<h2>Closed Portfolios</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Portfolio Name</th>
+      <th>Final Sale Price (USDC)</th>
+      <th>Date Sold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let portfolio of closedPortfolios">
+      <td>{{ portfolio.name }}</td>
+      <td>{{ portfolio.finalPrice }}</td>
+      <td>{{ portfolio.dateSold | date }}</td>
+    </tr>
+  </tbody>
+</table>

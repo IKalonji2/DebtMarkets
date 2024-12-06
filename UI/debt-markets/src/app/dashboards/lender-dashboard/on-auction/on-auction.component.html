@@ -1,0 +1,7 @@
+<h2>Portfolios On Auction</h2>
+<div *ngFor="let portfolio of portfoliosOnAuction" class="portfolio-card">
+  <h3>{{ portfolio.name }}</h3>
+  <p>Highest Bid: {{ portfolio.highestBid }} USDC</p>
+  <p>Bidders: {{ portfolio.bidders }}</p>
+  <p>Auction Ends In: {{ portfolio.auctionEndTime | date: 'shortTime' }}</p>
+</div>

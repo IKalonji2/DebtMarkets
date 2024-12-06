@@ -25,6 +25,10 @@ import { LenderDashboardComponent } from './dashboards/lender-dashboard/lender-d
 import { CollectionAgentDashboardComponent } from './dashboards/collection-agent-dashboard/collection-agent-dashboard.component';
 import { TraderDashboardComponent } from './dashboards/trader-dashboard/trader-dashboard.component';
 import { AuthAPIService } from './services/auth-service/auth-api.service';
+import { OverviewComponent } from './dashboards/lender-dashboard/overview/overview.component';
+import { SubmitPortfolioComponent } from './dashboards/lender-dashboard/submit-portfolio/submit-portfolio.component';
+import { OnAuctionComponent } from './dashboards/lender-dashboard/on-auction/on-auction.component';
+import { ClosedAuctionsComponent } from './dashboards/lender-dashboard/closed-auctions/closed-auctions.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +50,10 @@ import { AuthAPIService } from './services/auth-service/auth-api.service';
     LenderDashboardComponent,
     CollectionAgentDashboardComponent,
     TraderDashboardComponent,
+    OverviewComponent,
+    SubmitPortfolioComponent,
+    OnAuctionComponent,
+    ClosedAuctionsComponent
   ],
   imports: [
     BrowserModule,

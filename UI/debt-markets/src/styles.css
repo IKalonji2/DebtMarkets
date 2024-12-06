@@ -35,12 +35,13 @@ body {
 .about-page,
 .auctions-page,
 .trading-view,
-.trades {
-  scroll-snap-align: start;
+.trades,
+.dashboard  {
+  /* scroll-snap-align: start; */
   /* width: 100%; */
   min-height: 100vh;
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-  transform: translateY(20px);
+  /* transform: translateY(20px); */
 }
 
 .title-wrapper {
@@ -82,7 +83,8 @@ body {
 .reusable-form,
 .about-page,
 .trading-view ,
-.trades {
+.trades,
+.dashboard {
   transform: translateY(0);
   opacity: 1;
 }
@@ -92,7 +94,8 @@ body {
   .reusable-form,
   .about-page,
   .trading-view,
-  .trades {
+  .trades,
+  .dashboard {
     justify-content: flex-start;
     padding: 1rem;
 
