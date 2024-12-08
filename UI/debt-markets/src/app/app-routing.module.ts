@@ -10,9 +10,9 @@ import { AuctionsViewComponent } from './dashboards/auctions-view/auctions-view.
 import { TradingViewComponent } from './dashboards/trading-view/trading-view.component';
 import { AuctionDetailsComponent } from './dashboards/auction-details/auction-details.component';
 import { TradesDashboardComponent } from './dashboards/trades-dashboard/trades-dashboard.component';
-import { LenderDashboardComponent } from './dashboards/lender-dashboard/lender-dashboard.component';
-import { CollectionAgentDashboardComponent } from './dashboards/collection-agent-dashboard/collection-agent-dashboard.component';
-import { TraderDashboardComponent } from './dashboards/trader-dashboard/trader-dashboard.component';
+// import { LenderDashboardComponent } from './dashboards/lender-dashboard/lender-dashboard.component';
+// import { CollectionAgentDashboardComponent } from './dashboards/collection-agent-dashboard/collection-agent-dashboard.component';
+// import { TraderDashboardComponent } from './dashboards/trader-dashboard/trader-dashboard.component';
 // import { roleGuard } from './guards/role.guard';
 
 const routes: Routes = [
@@ -56,20 +56,17 @@ const routes: Routes = [
     path: 'trades',
     component: TradesDashboardComponent
   },
-  {
-    path: 'trader-dashboard',
-    component: TraderDashboardComponent,
-    // canActivate: [roleGuard('trader')]
+  { 
+    path: 'lender-dashboard', 
+    loadChildren: () => import('./dashboards/lender-dashboard/lender-dashboard.module').then(m => m.LenderDashboardModule) 
   },
-  {
-    path: 'collector-dashboard',
-    component: CollectionAgentDashboardComponent,
-    // canActivate: [roleGuard('collector')]
+  { 
+    path: 'trader-dashboard', 
+    loadChildren: () => import('./dashboards/trader-dashboard/trader-dashboard.module').then(m => m.TraderDashboardModule) 
   },
-  {
-    path: 'lender-dashboard',
-    component: LenderDashboardComponent,
-    // canActivate: [roleGuard('lender')]
+  { 
+    path: 'collector-dashboard', 
+    loadChildren: () => import('./dashboards/collection-agent-dashboard/collector-dashboard.module').then(m => m.CollectorDashboardModule) 
   }
 ];
 

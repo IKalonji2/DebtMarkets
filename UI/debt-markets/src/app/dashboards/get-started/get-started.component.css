@@ -74,3 +74,15 @@
     background-color: aqua;
   }
 }
+
+@media (max-width: 768px) {
+  .card-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    justify-content: center;
+  }
+  /* .card {
+    margin: 1rem;
+  } */
+}

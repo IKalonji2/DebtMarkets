@@ -1,13 +1,15 @@
-<section class="dashboard">
-  <app-side-nav class="side-nav">
-    <ul>
-      <li routerLink="/overview" routerLinkActive="active">Overview</li>
-      <li routerLink="/submit-portfolio" routerLinkActive="active">Submit NPL</li>
-      <li routerLink="/on-auction" routerLinkActive="active">On Auction</li>
-      <li routerLink="/closed" routerLinkActive="active">Closed</li>
-    </ul>
+<section class="dashboard-layout">
+  <!-- Side Navigation for Desktop -->
+  <app-side-nav
+    *ngIf="!isMobileView"
+    [menuItems]="sideNavItems"
+    [isOpen]="true"
+    class="side-nav">
   </app-side-nav>
+
+  <!-- Main Content -->
   <div class="main-content">
     <router-outlet></router-outlet>
   </div>
 </section>
+

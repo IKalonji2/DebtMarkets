@@ -1,20 +1,9 @@
 <section class="submit-npl">
   <h2>Submit NPL Book</h2>
-  <form #nplForm="ngForm" (ngSubmit)="onSubmit(nplForm.value)">
-    <label>
-      Book Name:
-      <input type="text" name="bookName" ngModel required />
-    </label>
-    <label>
-      Total Outstanding Amount:
-      <input type="number" name="totalAmount" ngModel required />
-    </label>
-    <label>
-      Number of Borrowers:
-      <input type="number" name="borrowersCount" ngModel required />
-    </label>
-    <button type="submit">Submit</button>
-  </form>
+  <app-reusable-form
+    [formTitle]="formTitle"
+    [config]="formConfig"
+    submitButtonText="Submit"
+    (formSubmit)="onFormSubmit($event)">
+  </app-reusable-form>
 </section>
-
-

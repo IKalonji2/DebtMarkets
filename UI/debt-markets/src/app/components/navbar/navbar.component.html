@@ -1,16 +1,25 @@
 <nav class="navbar">
-  <div class="container">
-    <a href="/" class="logo">DebtMarkets</a>
-    <button class="menu-toggle" (click)="toggleMenu()">
-      <span *ngIf="!menuOpen">☰</span>
-      <span *ngIf="menuOpen">✖</span>
-    </button>
-    <ul [class.open]="menuOpen">
-      <!-- <li><a href="/register">Register</a></li> -->
-      <li><a href="/">Home</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/auctions">Auctions</a></li>
-      <li><a href="/trades">Trading</a></li>
+  <div class="logo">
+    <h1 [routerLink]="logoLink">{{ logoText }}</h1>
+  </div>
+
+  <div class="menu-container">
+    <ul class="menu">
+      <!-- Menu items for logged-in users -->
+      <li *ngIf="isLoggedIn">
+        <a [routerLink]="'/profile'" class="user-info">{{ userInfo }}</a>
+      </li>
+      <li *ngIf="isLoggedIn">
+        <a href="#" (click)="logout()">Logout</a>
+      </li>
+
+      <!-- Full menu items when the user is logged out -->
+      <ng-container *ngIf="!isLoggedIn">
+        <li *ngFor="let item of menuItems">
+          <a *ngIf="item.link" [routerLink]="item.link">{{ item.label }}</a>
+          <a *ngIf="item.action" href="#" (click)="item.action()">{{ item.label }}</a>
+        </li>
+      </ng-container>
     </ul>
   </div>
 </nav>

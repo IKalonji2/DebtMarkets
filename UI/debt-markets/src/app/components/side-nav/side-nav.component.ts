@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-nav',
@@ -7,12 +8,11 @@ import { Component, Input } from '@angular/core';
 })
 export class SideNavComponent {
   @Input() isOpen = false;
-  @Input() menuItems: string[] = [];
+  @Input() menuItems: { label: string; link: string }[] = [];
 
-  // Sections using side nav
-  onTradingPage = false;
+  constructor(private router: Router) {}
 
-  toggleNav() {
-    this.isOpen = !this.isOpen;
+  navigate(link: string) {
+    this.router.navigate([link]);
   }
 }

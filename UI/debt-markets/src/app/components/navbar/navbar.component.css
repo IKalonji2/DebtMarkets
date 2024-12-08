@@ -7,67 +7,71 @@
 .navbar {
   background: #000;
   color: #fff;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   font-family: Uchronia;
   position: sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-
-
-
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  height: 40px; 
+  
   .logo {
-    font-size: 2rem;
+    font-size: 1.4rem;
     font-family: UchroniaBold;
     text-decoration: none;
     color: #fff;
-    width: 50%;
+    margin-right: auto;
   }
 
-  .menu-toggle {
-    display: none;
-    font-size: 1.8rem;
-    background: none;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    width: 50%;
-    text-align: right;
+  .menu-container {
+    display: flex;
+    justify-content: flex-end; /* Align menu items to the right */
+    width: 100%;
   }
 
-  ul {
+  .menu {
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
-    justify-content: end;
     gap: 1rem;
-    width: 50%;
+  }
 
+  li {
+    a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.9rem; /* Slightly smaller font size */
+      padding: 0.5rem;
+      display: inline-block;
 
-    li {
-      a {
-        text-decoration: none;
-        color: #fff;
-        font-size: 1rem;
-        padding: 1rem;
-
-
-        &:hover {
-          color: #8A00C4;
-          border-right: 0.25rem solid #8A00C4;
-        }
+      &:hover {
+        color: #8A00C4;
+        border-bottom: 0.25rem solid #8A00C4;
       }
     }
   }
+  .user-info {
+    font-size: 0.9rem;
+    margin-left: 1rem;  /* Add space between user info and menu items */
+  }
 
+  /* Responsive adjustments */
   @media (max-width: 768px) {
     .menu-toggle {
       display: flex;
       align-items: center;
       justify-content: end;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
     }
 
     ul {

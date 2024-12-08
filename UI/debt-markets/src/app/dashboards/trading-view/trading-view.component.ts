@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-trading-view',
@@ -6,9 +6,23 @@ import { Component } from '@angular/core';
   styleUrl: './trading-view.component.css'
 })
 export class TradingViewComponent {
-  isSideNavOpen = false;
+  sideNavItems = [
+    { label: 'Overview', link: '/investment-overview' },
+    { label: 'Trades', link: '/portfolio-trades' },
+    { label: 'Tokens', link: '/tokens' },
+  ];
+  isMobileView = false;
 
-  toggleSideNav() {
-    this.isSideNavOpen = !this.isSideNavOpen;
+  @HostListener('window:resize', [])
+  onResize() {
+    this.checkMobileView();
+  }
+
+  ngOnInit() {
+    this.checkMobileView();
+  }
+
+  private checkMobileView() {
+    this.isMobileView = window.innerWidth <= 768;
   }
 }

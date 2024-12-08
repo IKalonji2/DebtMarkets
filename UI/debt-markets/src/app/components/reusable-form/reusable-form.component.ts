@@ -8,7 +8,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ReusableFormComponent implements OnInit {
   @Input() formTitle : string = '';
-  // @Input() config!: { name: string; label: string; type: string; errorMessage: string }[];
   @Input() config: any[] = [];
   @Input() submitButtonText: string = 'Submit';
   @Output() formSubmit = new EventEmitter<any>();
@@ -19,12 +18,6 @@ export class ReusableFormComponent implements OnInit {
   ngOnInit(): void {
     this.initializeForm();
     this.formTitle = localStorage.getItem('formTitle') || 'Lender / Collector Form';
-    // this.form = this.fb.group(
-    //   this.config.reduce((group, field) => {
-    //     group[field.name] = ['', Validators.required];
-    //     return group;
-    //   }, {} as { [key: string]: any })
-    // );
   }
 
   private initializeForm(): void {

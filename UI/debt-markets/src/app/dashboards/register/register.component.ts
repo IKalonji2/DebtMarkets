@@ -1,7 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { AbstractControl, ValidationErrors, Validators } from '@angular/forms';
-import { jwtDecode } from 'jwt-decode';
-import { Router } from '@angular/router';
 import { UserRegistration } from '../../models/user-registration';
 import { AuthAPIService } from '../../services/auth-service/auth-api.service';
 import { FormField } from '../../models/form-field';
@@ -89,8 +87,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.formTitle = localStorage.getItem('formTitle') || 'Lender / Collector';
-    console.log(this.formTitle);
-
     if (this.formTitle === 'Trader') {
       this.formConfig = [
         {
@@ -218,6 +214,5 @@ export class RegisterComponent implements OnInit {
       }
     }
   }
-
 
 }

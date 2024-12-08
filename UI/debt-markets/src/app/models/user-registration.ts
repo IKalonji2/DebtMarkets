@@ -1,7 +1,9 @@
+type Role = "lender" | "collector" | "trader" ;
+
 export interface UserRegistrationBase {
   name: string;
   email: string;
-  password: string;
+  password: string;      
   role: string;
 }
 
