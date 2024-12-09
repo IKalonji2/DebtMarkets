@@ -1,0 +1,17 @@
+.tokens table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .tokens th, .tokens td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .tokens th {
+    background-color: #f4f4f4;
+  }
+  
+  .tokens h2 {
+    color: white;
+  }

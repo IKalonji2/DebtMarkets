@@ -1,0 +1,16 @@
+.investments table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .investments th, .investments td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .investments th {
+    background-color: #f4f4f4;
+  }
+  .investments h2 {
+    color: white;
+  }

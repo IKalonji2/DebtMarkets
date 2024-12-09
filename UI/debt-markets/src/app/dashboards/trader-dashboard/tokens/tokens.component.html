@@ -1,0 +1,24 @@
+<div class="tokens">
+    <h2>Your Tokens</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Token ID</th>
+          <th>Value</th>
+          <th>Performance</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let token of tokens">
+          <td>{{ token.id }}</td>
+          <td>{{ token.value | currency }}</td>
+          <td>{{ token.performance }}</td>
+          <td>
+            <button>Sell</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -18,7 +18,7 @@
 .main-content {
   grid-column: 2;
   padding: 1rem;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .main-content h2 {

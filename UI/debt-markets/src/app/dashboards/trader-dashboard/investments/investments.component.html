@@ -1,0 +1,22 @@
+<div class="investments">
+    <h2>Your Investments</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Investment ID</th>
+          <th>Value</th>
+          <th>Performance</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let investment of investments">
+          <td>{{ investment.id }}</td>
+          <td>{{ investment.value | currency }}</td>
+          <td>{{ investment.performance }}</td>
+          <td>{{ investment.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

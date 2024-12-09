@@ -5,7 +5,6 @@
         <th>Bundle ID</th>
         <th>Collection Agent</th>
         <th>Total Value</th>
-        <th>Current Value</th>
         <th>Risk Level</th>
         <th>Performance Status</th>
         <th>Loans Count</th>
@@ -14,35 +13,24 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let bundle of loanBundles">
+      <tr *ngFor="let bundle of loanBundles" [routerLink]="['/trader-dashboard/open-trades', bundle.bundleId]">
         <td>{{ bundle.bundleId }}</td>
         <td>{{ bundle.collectionAgent }}</td>
         <td>{{ bundle.totalValue | currency }}</td>
-        <td>{{ bundle.currentValue | currency }}</td>
         <td [ngClass]="{
           'low-risk': bundle.riskLevel === 'low',
           'medium-risk': bundle.riskLevel === 'medium',
           'high-risk': bundle.riskLevel === 'high'
-        }">
-          {{ bundle.riskLevel | titlecase }}
-        </td>
+        }">{{ bundle.riskLevel | titlecase }}</td>
         <td [ngClass]="{
           'good-performance': bundle.performanceStatus === 'good',
           'bad-performance': bundle.performanceStatus === 'bad',
           'neutral-performance': bundle.performanceStatus === 'neutral'
-        }">
-          <span>{{ bundle.performanceStatus === 'good' ? 'Improving' : (bundle.performanceStatus === 'bad' ? 'Declining' : 'Stable') }}</span>
-          <i [ngClass]="{
-            'fas fa-arrow-up': bundle.performanceStatus === 'good',
-            'fas fa-arrow-down': bundle.performanceStatus === 'bad',
-            'fas fa-minus': bundle.performanceStatus === 'neutral'
-          }"></i>
-        </td>
+        }">{{ bundle.performanceStatus }}</td>
         <td>{{ bundle.loansCount }}</td>
         <td>{{ bundle.lastUpdated | date:'short' }}</td>
         <td><button (click)="investInBundle(bundle.bundleId)">Invest</button></td>
       </tr>
     </tbody>
   </table>
-
 </section>

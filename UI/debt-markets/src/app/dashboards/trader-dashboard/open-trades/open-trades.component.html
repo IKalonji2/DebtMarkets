@@ -1,0 +1,23 @@
+<div class="open-trades">
+  <h2>Open Trades</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Bundle ID</th>
+        <th>Total Value</th>
+        <th>Risk Level</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bundle of loanBundles">
+        <td>{{ bundle.bundleId }}</td>
+        <td>{{ bundle.totalValue | currency }}</td>
+        <td>{{ bundle.riskLevel }}</td>
+        <td>
+          <button (click)="investInBundle(bundle.bundleId)">Invest</button>
+        </td>
+      </tr>
+    </tbody>
+</table>
+</div>

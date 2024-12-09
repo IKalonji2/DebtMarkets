@@ -1,0 +1,29 @@
+.overview {
+    padding: 20px;
+  }
+  
+  .overview h2 {
+    color: white
+
+  }
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+
+  }
+  
+  .stat {
+    border: 1px solid #ddd;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 30%;
+  }
+  
+  .stat h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  

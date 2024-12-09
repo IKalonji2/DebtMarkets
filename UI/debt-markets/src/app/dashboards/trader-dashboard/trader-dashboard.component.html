@@ -1,1 +1,14 @@
-<p>trader-dashboard works!</p>
+<section class="dashboard-layout">
+  <!-- Side Navigation for Desktop -->
+  <app-side-nav
+    *ngIf="!isMobileView"
+    [menuItems]="sideNavItems"
+    [isOpen]="true"
+    class="side-nav">
+  </app-side-nav>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+</section>
