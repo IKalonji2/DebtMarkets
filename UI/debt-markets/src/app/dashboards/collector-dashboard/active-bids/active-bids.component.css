@@ -1,0 +1,15 @@
+.active-bids-container {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .bid-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+  }
+  
+  .bid-item:last-child {
+    border-bottom: none;
+  }

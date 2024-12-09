@@ -66,7 +66,7 @@ const routes: Routes = [
   },
   { 
     path: 'collector-dashboard', 
-    loadChildren: () => import('./dashboards/collection-agent-dashboard/collector-dashboard.module').then(m => m.CollectorDashboardModule) 
+    loadChildren: () => import('./dashboards/collector-dashboard/collector-dashboard.module').then(m => m.CollectorDashboardModule) 
   }
 ];
 

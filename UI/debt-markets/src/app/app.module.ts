@@ -10,7 +10,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AboutComponent } from './dashboards/about/about.component';
 import { AuctionDetailsComponent } from './dashboards/auction-details/auction-details.component';
 import { AuctionsViewComponent } from './dashboards/auctions-view/auctions-view.component';
-import { CollectorDashboardModule } from './dashboards/collection-agent-dashboard/collector-dashboard.module';
 import { GetStartedComponent } from './dashboards/get-started/get-started.component';
 import { LandingComponent } from './dashboards/landing/landing.component';
 import { LenderDashboardComponent } from './dashboards/lender-dashboard/lender-dashboard.component';
@@ -23,6 +22,8 @@ import { TradingViewComponent } from './dashboards/trading-view/trading-view.com
 import { AuthAPIService } from './services/auth-service/auth-api.service';
 import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { CollectorDashboardComponent } from './dashboards/collector-dashboard/collector-dashboard.component';
+import { CollectorDashboardModule } from './dashboards/collector-dashboard/collector-dashboard.module';
 
 @NgModule({
   declarations: [

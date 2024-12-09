@@ -1,0 +1,12 @@
+<!-- src/app/dashboards/collection-agent-dashboard/active-bids/active-bids.component.html -->
+
+<div class="active-bids-container">
+    <h2>Active Bids</h2>
+    <ul>
+      <li *ngFor="let bid of activeBids" class="bid-item">
+        <p><strong>Portfolio:</strong> {{ bid.portfolioName }}</p>
+        <p><strong>Status:</strong> {{ bid.status }}</p>
+      </li>
+    </ul>
+  </div>
+  

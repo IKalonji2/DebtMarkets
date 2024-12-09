@@ -1,0 +1,36 @@
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: 290px 1fr; 
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .side-nav {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    background-color: #000;
+    color: #fff;
+    overflow-y: hidden;
+    /* position: fixed; */
+  }
+  
+  .main-content {
+    grid-column: 2;
+    padding: 1rem;
+    overflow-y: auto;
+  }
+  
+  .main-content h2 {
+    margin-top: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-layout {
+      grid-template-columns: 1fr; /* Single column layout */
+    }
+  
+    .side-nav {
+      display: none;
+  }
+  }

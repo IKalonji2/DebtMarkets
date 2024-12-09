@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { OpenLoanBundlesService } from '../../services/open-loan-bundles.service';
 
 @Component({
@@ -18,9 +18,16 @@ export class TraderDashboardComponent implements OnInit {
 
   isMobileView: boolean = false;
 
+  @HostListener('window:resize', [])
+  onResize() {
+    this.checkMobileView();
+  }
+
   constructor(private openLoanBundlesService: OpenLoanBundlesService) {}
 
   ngOnInit(): void {
+    this.checkMobileView();
+
     // Fetch open loan bundles
     this.openLoanBundlesService.getOpenLoanBundles().subscribe((data) => {
       this.loanBundles = data;
@@ -30,5 +37,9 @@ export class TraderDashboardComponent implements OnInit {
   investInBundle(bundleId: string): void {
     // Handle the invest logic
     console.log(`Investing in bundle with ID: ${bundleId}`);
+  }
+
+  private checkMobileView() {
+    this.isMobileView = window.innerWidth <= 768;
   }
 }
