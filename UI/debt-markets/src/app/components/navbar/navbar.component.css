@@ -58,10 +58,9 @@
   }
   .user-info {
     font-size: 0.9rem;
-    margin-left: 1rem;  /* Add space between user info and menu items */
+    margin-left: 1rem;
   }
 
-  /* Responsive adjustments */
   @media (max-width: 768px) {
     .menu-toggle {
       display: flex;

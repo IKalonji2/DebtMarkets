@@ -7,6 +7,7 @@ import sequelize from "./database";
 import lenderRoutes from "./routes/lenderRoutes";
 import auctionRoutes from "./routes/auctionRoutes";
 import earningRoutes from "./routes/earningRoutes";
+import loanBookRoutes from "./routes/loanBookRoutes";
 
 // dotenv.config();
 
@@ -24,6 +25,7 @@ app.use(bodyParser.json());
 app.use("/lender", lenderRoutes);
 app.use("/auctions", auctionRoutes);
 app.use("/earnings", earningRoutes);
+app.use('/api', loanBookRoutes);
 
 // Health Check
 app.get("/health", (req, res) => {
@@ -48,7 +50,6 @@ const startServer = async () => {
   }
 };
 
-// Graceful Shutdown
 process.on("SIGINT", async () => {
   console.log("Shutting down gracefully...");
   await sequelize.close();

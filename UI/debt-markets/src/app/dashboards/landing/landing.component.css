@@ -1,6 +1,6 @@
 .landing-page {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 2;
   align-items: center;
   justify-content: center;
 }

@@ -1,4 +1,7 @@
-
+.side-nav{
+  position: fixed;
+  width: 290px;
+}
 .side-nav ul {
   list-style: none;
   padding: 0;

@@ -16,7 +16,6 @@ export class LenderDashboardAPIService {
   ) {}
 
   private getAuthHeaders(): HttpHeaders {
-    // const token = localStorage.getItem('accessToken');
     const token = this.authService.getToken()
     console.log("in the frontend , the token", token)
     return new HttpHeaders({
@@ -27,12 +26,6 @@ export class LenderDashboardAPIService {
 
   getPortfolios(): Observable<any> {
     return this.http.get(`${this.apiUrl}/lender/portfolios`, {
-      headers: this.getAuthHeaders(),
-    });
-  }
-
-  submitPortfolio(portfolioData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/lender/portfolios`, portfolioData, {
       headers: this.getAuthHeaders(),
     });
   }
@@ -56,6 +49,11 @@ export class LenderDashboardAPIService {
   }
   getEarnings(): Observable<any> {
     return this.http.get(`${this.apiUrl}/earnings`, {
+      headers: this.getAuthHeaders(),
+    });
+  }
+  evaluateLoanBook(formData: FormData): Observable<any> {
+    return this.http.post(`${this.apiUrl}/evaluate-loan-book`, formData, {
       headers: this.getAuthHeaders(),
     });
   }

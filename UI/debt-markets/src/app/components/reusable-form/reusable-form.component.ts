@@ -17,7 +17,7 @@ export class ReusableFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
-    this.formTitle = localStorage.getItem('formTitle') || 'Lender / Collector Form';
+    // this.formTitle = localStorage.getItem('formTitle') || 'Lender / Collector Form';
   }
 
   private initializeForm(): void {

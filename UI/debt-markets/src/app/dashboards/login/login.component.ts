@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { AuthResponse } from '../../models/auth-response.model';
 import { UserLogin } from '../../models/user-login';
@@ -10,8 +10,8 @@ import { AuthService } from '../../services/auth-service/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  @Input() formTitle: string = 'Login';
+export class LoginComponent implements OnInit{
+  formTitle: string = '';
   formConfig = [
     {
       name: 'email',
@@ -34,6 +34,13 @@ export class LoginComponent {
   errorMessage: string = '';
 
   constructor(private authApiService: AuthAPIService, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    localStorage.removeItem('formTitle')
+    this.formTitle = 'Login'
+  }
+
+
 
   handleFormSubmit(values: any): void {
     const payload: UserLogin = {

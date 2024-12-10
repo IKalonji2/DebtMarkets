@@ -158,7 +158,7 @@ export class RegisterComponent implements OnInit {
   }
 
   handleFormSubmit(values: any): void {
-    this.formTitle = 'Lender';
+    this.formTitle = localStorage.getItem("formTitle") || "Lender";
     if (this.formTitle === 'Trader') {
       const trader = this.formTitle.toLowerCase() as 'trader';
       const userRegistrationPayload: UserRegistration = {

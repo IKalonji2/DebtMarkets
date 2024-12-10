@@ -9,7 +9,9 @@
         <p>{{ portfolio.description || 'No description' }}</p>
         <p>Value: ${{ portfolio.value }}</p>
         <p>Status: {{ portfolio.status }}</p>
-        <button (click)="startAuction(portfolio.id)">Start Auction</button>
+        <div class="button-wrapper">
+          <button (click)="startAuction(portfolio.id)">Start Auction</button>
+        </div>
       </div>
     </div>
 
@@ -27,9 +29,11 @@
     <h3>Earnings History</h3>
     <div *ngIf="overview.earnings.length === 0">No calculated earnings available</div>
     <div *ngFor="let earning of overview.earnings">
-      <h4>Earnings for Portfolio {{ earning.portfolioId }}</h4>
-      <p>Amount: ${{ earning.amount }}</p>
-      <p>Date: {{ earning.date | date }}</p>
+      <div class="card">
+        <h4>Earnings for Portfolio {{ earning.portfolioId }}</h4>
+        <p>Amount: ${{ earning.amount }}</p>
+        <p>Date: {{ earning.date | date }}</p>
+      </div>
     </div>
   </div>
 
