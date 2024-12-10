@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { validateToken, requireRole } from "../middleware/userAuth";
+import { validateToken, requireRole } from "../middlewares/authenticate";
 import DebtPortfolio from "../models/debtPortfolio";
 
 const router = express.Router();
@@ -7,7 +7,6 @@ const router = express.Router();
 router.get(
   "/portfolios",
   validateToken,
-  requireRole(["lender"]),
   async (req: Request, res: Response) => {
     try {
         const user = (req as any).user;

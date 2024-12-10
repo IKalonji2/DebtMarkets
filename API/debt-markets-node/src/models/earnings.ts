@@ -2,15 +2,14 @@ import { DataTypes, Model } from "sequelize";
 import sequelize from "../database";
 import DebtPortfolio from "./debtPortfolio";
 
-class Auction extends Model {
+class Earnings extends Model {
   public id!: number;
   public portfolioId!: number;
-  public startDate!: Date;
-  public endDate!: Date;
-  public winningBid!: number;
+  public amount!: number;
+  public date!: Date;
 }
 
-Auction.init(
+Earnings.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -25,27 +24,23 @@ Auction.init(
         key: "id",
       },
     },
-    startDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    endDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    winningBid: {
+    amount: {
       type: DataTypes.FLOAT,
-      allowNull: true,
+      allowNull: false,
+    },
+    date: {
+      type: DataTypes.DATE,
+      allowNull: false,
     },
   },
   {
     sequelize,
-    modelName: "Auction",
-    tableName: "auctions",
+    modelName: "Earnings",
+    tableName: "earnings",
   }
 );
 
-DebtPortfolio.hasMany(Auction, { foreignKey: "portfolioId" });
-Auction.belongsTo(DebtPortfolio, { foreignKey: "portfolioId" });
+DebtPortfolio.hasMany(Earnings, { foreignKey: "portfolioId" });
+Earnings.belongsTo(DebtPortfolio, { foreignKey: "portfolioId" });
 
-export default Auction;
+export default Earnings;

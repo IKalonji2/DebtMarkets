@@ -4,20 +4,23 @@ import bodyParser from "body-parser";
 import sequelize from "./database";
 import authRoutes from "./routes/authRoutes";
 import dotenv from "dotenv";
+import { authenticate } from "./middlewares/authenticate";
 
 const app = express();
 const PORT = 3000;
 dotenv.config();
 
 
-//CORS
 app.use(cors());
 
-// Middleware
 app.use(bodyParser.json());
 
-// Routes
 app.use("/auth", authRoutes);
+
+app.use("/protected-route", authenticate, (req, res) => {
+  console.log("User in Protected Route:", (req as any).user);
+  res.json({ message: "Access granted", user: (req as any).user });
+});
 
 const startServer = async () => {
   try {

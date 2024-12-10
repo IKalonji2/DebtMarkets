@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import User from "../models/user";
 import { hashPassword, verifyPassword } from "../utils/hashUtils";
-import { createJWT } from "../utils/jwtUtils";
+import { createJWT, verifyJWT } from "../utils/jwtUtils";
 import UserDetails from "../models/userDetails";
 
 const router = express.Router();
@@ -74,6 +74,35 @@ router.post("/login", async (req: Request, res: Response): Promise<any> => {
   const token = createJWT({ id: user.id, email: user.email, role: user.role });
 
   return res.json({ accessToken: token, role: user.role });
+});
+
+router.post("/verify", async (req: Request, res: Response): Promise<any> => {
+  const { token } = req.body;
+
+  if (!token) {
+    return res.status(400).json({ valid: false, error: "Token is required" });
+  }
+
+  try {
+    const payload = verifyJWT(token);
+
+    if (!payload) {
+      return res.status(401).json({ valid: false, error: "Invalid or expired token" });
+    }
+
+    const user = await User.findByPk(payload.id, {
+      attributes: ["id", "name", "email", "role"],
+    });
+
+    if (!user) {
+      return res.status(404).json({ valid: false, error: "User not found" });
+    }
+
+    return res.json({ valid: true, payload: { id: user.id, email: user.email, role: user.role } });
+  } catch (error) {
+    console.error("Token validation error:", error);
+    return res.status(500).json({ valid: false, error: "Token validation failed" });
+  }
 });
 
 export default router;

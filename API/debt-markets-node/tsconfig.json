@@ -8,8 +8,12 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "src/**/*",
-    "src/types/**/*"
-, "seedData.ts"  ],
-  "typeRoots": ["./node_modules/@types", "./src/types"]
+    "src/**/*",          // Include all files in `src/`
+    "seedData.ts",       // Include any specific files as needed
+    "src/types/*.d.ts"   // Explicitly include declaration files
+  ],
+  "typeRoots": [
+    "./node_modules/@types",
+    "./src/types"         // Specify your custom types directory
+  ]
 }

@@ -1,12 +1,12 @@
 import express, { Request, Response } from "express";
-import { requireRole } from "../middleware/userAuth";
+import { requireRole, validateToken } from "../middlewares/authenticate";
 import Auction from "../models/auction";
 import DebtPortfolio from "../models/debtPortfolio";
 
 const router = express.Router();
 
 // Start an auction
-router.post("/auctions", requireRole(["lender"]), async (req: Request, res: Response) : Promise<void> => {
+router.post("/auctions", validateToken, async (req: Request, res: Response) : Promise<void> => {
   try {
     const { portfolioId, startTime, endTime } = req.body;
 

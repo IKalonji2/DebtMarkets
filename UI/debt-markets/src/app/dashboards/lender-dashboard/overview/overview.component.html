@@ -1,13 +1,39 @@
 <section class="overview">
-  <h2>Overview</h2>
-  <div class="card">
-    <h2>Portfolio</h2>
-    <div *ngFor="let portfolio of portfolios" class="portfolio-card">
-      <h3>{{ portfolio.name }}</h3>
-      <p>Status: {{ portfolio.rating }}</p>
-      <p>Value: {{ portfolio.value }}</p>
-      <p>Status: {{ portfolio.status }}</p>
-      <button *ngIf="portfolio.status === 'evaluated'" (click)="startAuction(portfolio.id)">Start Auction</button>
+  <h2>Lender Dashboard</h2>
+  <div *ngIf="overview; else loadingTemplate">
+    <h3>Portfolios</h3>
+    <div *ngIf="overview.portfolios.length === 0">No portfolios available</div>
+    <div *ngFor="let portfolio of overview.portfolios">
+      <div class="card">
+        <h4>{{ portfolio.name }}</h4>
+        <p>{{ portfolio.description || 'No description' }}</p>
+        <p>Value: ${{ portfolio.value }}</p>
+        <p>Status: {{ portfolio.status }}</p>
+        <button (click)="startAuction(portfolio.id)">Start Auction</button>
+      </div>
+    </div>
+
+    <h3>Auction History</h3>
+    <div *ngIf="overview.auctions.length === 0">No NPL Portfolios auctions yet</div>
+    <div *ngFor="let auction of overview.auctions">
+      <div class="card">
+        <h4>Auction for Portfolio {{ auction.portfolioId }}</h4>
+        <p>Start Date: {{ auction.startDate | date }}</p>
+        <p>End Date: {{ auction.endDate | date }}</p>
+        <p>Winning Bid: ${{ auction.winningBid || 'Not yet concluded' }}</p>
+      </div>
+    </div>
+
+    <h3>Earnings History</h3>
+    <div *ngIf="overview.earnings.length === 0">No calculated earnings available</div>
+    <div *ngFor="let earning of overview.earnings">
+      <h4>Earnings for Portfolio {{ earning.portfolioId }}</h4>
+      <p>Amount: ${{ earning.amount }}</p>
+      <p>Date: {{ earning.date | date }}</p>
     </div>
   </div>
+
+  <ng-template #loadingTemplate>
+    <p>Loading overview data...</p>
+  </ng-template>
 </section>

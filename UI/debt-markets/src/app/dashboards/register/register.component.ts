@@ -158,6 +158,7 @@ export class RegisterComponent implements OnInit {
   }
 
   handleFormSubmit(values: any): void {
+    this.formTitle = 'Lender';
     if (this.formTitle === 'Trader') {
       const trader = this.formTitle.toLowerCase() as 'trader';
       const userRegistrationPayload: UserRegistration = {
@@ -170,8 +171,6 @@ export class RegisterComponent implements OnInit {
       this.authApiService.createUser(userRegistrationPayload).subscribe({
         next: (response: AuthResponse) => {
           console.log('Trader Registration Successful:', response);
-          alert('Trader registration successful!');
-
           this.authService.redirectBasedOnRole(response.accessToken);
         },
         error: (error) => {

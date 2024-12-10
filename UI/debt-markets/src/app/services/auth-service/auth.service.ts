@@ -17,13 +17,15 @@ export class AuthService {
   constructor(private router: Router, private http: HttpClient) {}
 
   storeToken(token: string): void {
-    document.cookie = `${this.tokenKey}=${token}; path=/`;
+    console.log('Storing token:', token);  // Debugging
+    document.cookie = `${this.tokenKey}=${token}; path=/`;  // Store token in cookie
     this.isLoggedInSubject.next(true);
     this.updateRole(); // Update role whenever the token is stored
   }
 
   getToken(): string | null {
     const match = document.cookie.match(new RegExp('(^| )' + this.tokenKey + '=([^;]+)'));
+    console.log('Retrieved token:', match ? match[2] : null);  // Debugging
     return match ? match[2] : null;
   }
 

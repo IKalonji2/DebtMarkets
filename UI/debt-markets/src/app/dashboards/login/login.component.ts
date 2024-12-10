@@ -31,33 +31,16 @@ export class LoginComponent {
     }
   ];
 
-  errorMessage: string = '';  // For error feedback
+  errorMessage: string = '';
+
   constructor(private authApiService: AuthAPIService, private authService: AuthService) {}
 
-  // handleFormSubmit(values: any): void {
-  //   console.log('Form Submitted:', values);
-  //   const userLoginPayload: UserLogin = {
-  //     email: values.email,
-  //     password: values.password,
-  //   };
-
-  //   this.authApiService.loginUser(userLoginPayload).subscribe({
-  //     next: (response: AuthResponse) => {
-  //       console.log('Login Successful:', response);
-  //       this.authService.redirectBasedOnRole(response.accessToken);
-  //     },
-  //     error: (error) => {
-  //       console.error('Login Error:', error);
-  //       this.errorMessage = error.error?.message || 'Login failed. Please try again.';
-  //     },
-  //   });
-  // }
   handleFormSubmit(values: any): void {
     const payload: UserLogin = {
       email: values.email,
       password: values.password,
     };
-  
+
     this.authApiService.loginUser(payload).subscribe({
       next: (response: AuthResponse) => {
         console.log('Login Successful:', response);
@@ -69,5 +52,4 @@ export class LoginComponent {
       },
     });
   }
-  
 }

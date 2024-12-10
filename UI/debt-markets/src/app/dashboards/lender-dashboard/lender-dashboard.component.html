@@ -1,13 +1,18 @@
 <section class="dashboard-layout">
-  <!-- Side Navigation for Desktop -->
   <app-side-nav
     *ngIf="!isMobileView"
     [menuItems]="sideNavItems"
     [isOpen]="true"
     class="side-nav">
+    <div *ngFor="let item of sideNavItems">
+      <a [routerLink]="item.link" routerLinkActive="active-link">{{ item.label }}</a>
+    </div>
   </app-side-nav>
+  <div *ngIf="isMobileView">
+    <button (click)="toggleSidebar()">☰</button>
+    <app-side-nav [menuItems]="sideNavItems" [isOpen]="isSidebarOpen"></app-side-nav>
+  </div>
 
-  <!-- Main Content -->
   <div class="main-content">
     <router-outlet></router-outlet>
   </div>
