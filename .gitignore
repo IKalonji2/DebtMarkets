@@ -133,5 +133,8 @@ dist
 API/auth-node/auth.db
 API/debt-markets-node/debt_markets.db
 
-#Enviroment file
+#Environment file
 API/auth-node/src/.env
+
+#Virtual environment
+API/debt-debt_markets-node/src/ai_engine/venv
