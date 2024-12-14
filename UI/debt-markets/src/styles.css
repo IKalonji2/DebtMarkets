@@ -62,7 +62,10 @@ body {
   align-items: center;
   justify-content: center;
 } */
-
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
 .title-wrapper h2 {
   font-family: UchroniaLight;
   font-size: 2rem;

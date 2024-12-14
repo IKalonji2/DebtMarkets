@@ -10,7 +10,11 @@ async function seedTestData() {
       name: "Lender 2 Portfolio",
       description: "Portfolio for lender 2",
       value: 100000,
-      status: "active",
+      status: "onAuction", // Aligning with ENUM values: "pending", "onAuction", "closed"
+      portfolioValue: 120000,
+      riskDistribution: JSON.stringify({ 0: 0.4, 1: 0.6 }), // Mocked risk distribution
+      predictions: JSON.stringify([1, 0, 1, 1, 0]), // Mocked predictions
+      probabilities: JSON.stringify([[0.3, 0.7], [0.6, 0.4], [0.2, 0.8], [0.1, 0.9], [0.5, 0.5]]), // Mocked probabilities
     });
 
     const portfolio2 = await DebtPortfolio.create({
@@ -18,7 +22,11 @@ async function seedTestData() {
       name: "Lender 6 Portfolio",
       description: "Portfolio for lender 6",
       value: 150000,
-      status: "active",
+      status: "onAuction",
+      portfolioValue: 180000,
+      riskDistribution: JSON.stringify({ 0: 0.5, 1: 0.5 }), // Mocked risk distribution
+      predictions: JSON.stringify([0, 1, 1, 0, 1]), // Mocked predictions
+      probabilities: JSON.stringify([[0.4, 0.6], [0.3, 0.7], [0.2, 0.8], [0.7, 0.3], [0.1, 0.9]]), // Mocked probabilities
     });
 
     // Create Auctions

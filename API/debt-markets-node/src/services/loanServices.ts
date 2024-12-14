@@ -1,26 +1,72 @@
-import fs from 'fs';
-import csvParser from 'csv-parser';
-import { evaluatePortfolioValue, getClientRating } from './aiModel';
+import Auction from "../models/auction";
+import DebtPortfolio from "../models/debtPortfolio";
+import LoanDetails from "../models/loanDetailsModel";
+import { evaluatePortfolioWithAI, parseCsvToLoans } from "../services/aiEvaluationService";
 
-export const evaluateLoanBook = (filePath: string) => {
-  return new Promise<any>((resolve, reject) => {
-    const results: any[] = [];
+export const createDebtPortfolio = async (
+  filePath: string,
+  bookName: string,
+  totalAmount: number,
+  lenderId: number
+) => {
+  let evaluationResults;
+  let status = "pending"; 
+  try {
+    evaluationResults = await evaluatePortfolioWithAI(filePath);
+    console.log("Evaluation Results:", evaluationResults);
 
-    fs.createReadStream(filePath)
-      .pipe(csvParser())
-      .on('data', (data) => results.push(data))
-      .on('end', async () => {
-        const portfolioValue = evaluatePortfolioValue(results);
-        const clientRating = getClientRating(results);
+    if (evaluationResults.loans && Array.isArray(evaluationResults.loans)) {
+      status = "active";
+    } else {
+      evaluationResults.loans = await parseCsvToLoans(filePath);
 
-        const evaluationResults = {
-          portfolioValue,
-          clientRating,
-          status: 'Evaluated',
-        };
+      if (evaluationResults.loans.length > 0) {
+        status = "active";
+      }
+    }
+  } catch (error) {
+    console.error("AI Evaluation Failed:", error);
+    evaluationResults = { loans: [] };
+  }
 
-        resolve(evaluationResults);
-      })
-      .on('error', (error) => reject(error));
+  const newPortfolio = await DebtPortfolio.create({
+    portfolioName: bookName,
+    bookValue: totalAmount,
+    portfolioValue: evaluationResults.portfolioValue || null,
+    riskDistribution: evaluationResults.riskDistribution || null,
+    rating: evaluationResults.rating || null,
+    lenderId,
+    status,
   });
+
+  if (evaluationResults.loans.length > 0) {
+    for (const loan of evaluationResults.loans) {
+      await LoanDetails.create({
+        portfolioId: newPortfolio.id,
+        loanAmount: loan.loan_amount,
+        repaymentRate: loan.repayment_rate,
+        defaultHistory: loan.default_history,
+        incomeLevel: loan.income_level,
+        creditScore: loan.credit_score,
+        repaymentProbability: loan.repayment_probability,
+      });
+    }
+  }
+
+  if (status === "active") {
+    const auctionDurationDays = 7;
+    const startDate = new Date();
+    const endDate = new Date();
+    endDate.setDate(startDate.getDate() + auctionDurationDays);
+
+    await Auction.create({
+      portfolioId: newPortfolio.id,
+      startDate,
+      endDate,
+      winningBid: null,
+      status: "active",
+    });
+  }
+
+  return newPortfolio;
 };

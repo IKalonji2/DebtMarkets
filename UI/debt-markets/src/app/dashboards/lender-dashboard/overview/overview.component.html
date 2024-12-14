@@ -3,26 +3,35 @@
   <div *ngIf="overview; else loadingTemplate">
     <h3>Portfolios</h3>
     <div *ngIf="overview.portfolios.length === 0">No portfolios available</div>
-    <div *ngFor="let portfolio of overview.portfolios">
+    <div class="portfolios" *ngFor="let portfolio of overview.portfolios">
       <div class="card">
-        <h4>{{ portfolio.name }}</h4>
-        <p>{{ portfolio.description || 'No description' }}</p>
-        <p>Value: ${{ portfolio.value }}</p>
-        <p>Status: {{ portfolio.status }}</p>
-        <div class="button-wrapper">
+        <h4>{{ portfolio.portfolioName }}</h4>
+        <table>
+          <tr>
+            <th>Value</th>
+            <th>Rating</th>
+            <th>Status</th>
+          </tr>
+          <tr>
+            <td>${{ portfolio.portfolioValue }}</td>
+            <td>{{ portfolio.rating }}</td>
+            <td>{{ portfolio.status }}</td>
+          </tr>
+        </table>
+        <!-- <div class="button-wrapper">
           <button (click)="startAuction(portfolio.id)">Start Auction</button>
-        </div>
+        </div> -->
       </div>
     </div>
 
     <h3>Auction History</h3>
     <div *ngIf="overview.auctions.length === 0">No NPL Portfolios auctions yet</div>
-    <div *ngFor="let auction of overview.auctions">
+    <div *ngFor="let auction of overview.auctions" class="auction-history">
       <div class="card">
         <h4>Auction for Portfolio {{ auction.portfolioId }}</h4>
         <p>Start Date: {{ auction.startDate | date }}</p>
         <p>End Date: {{ auction.endDate | date }}</p>
-        <p>Winning Bid: ${{ auction.winningBid || 'Not yet concluded' }}</p>
+        <p>Winning Bid: ${{ auction.winningBid  }} || {{'Not yet concluded'}}</p>
       </div>
     </div>
 

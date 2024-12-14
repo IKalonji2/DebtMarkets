@@ -44,7 +44,7 @@ def setup_python_environment():
 
     # Activate virtual environment and install dependencies
     activate_script = Path("venv/bin/activate")
-    subprocess.run(f"bash -c 'source {activate_script} && pip3 install -r requirements.txt'", shell=True)
+    subprocess.run(f"bash -c 'source {activate_script} && pip3 install -r requirements.txt'", shell=True, check=True)
 
     os.chdir("../../../..")  # Return to the root directory
 

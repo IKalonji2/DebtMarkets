@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LenderDashboardAPIService } from '../../../services/lender-dashboard.service';
 
 @Component({
   selector: 'app-on-auction',
@@ -6,13 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./on-auction.component.css']
 })
 export class OnAuctionComponent implements OnInit {
-  portfoliosOnAuction: any[] = []; // Define the property
+  portfoliosOnAuction: any[] = [];
+  errorMessage: string | undefined;
+
+  constructor(private lenderService: LenderDashboardAPIService) {}
 
   ngOnInit(): void {
-    // Fetch or mock data for portfolios on auction
-    this.portfoliosOnAuction = [
-      { name: 'Portfolio A', currentBid: '$10,000' },
-      { name: 'Portfolio B', currentBid: '$12,500' },
-    ];
+    this.fetchActiveAuctions();
+  }
+
+  fetchActiveAuctions(): void {
+    this.lenderService.getActiveAuctions().subscribe(
+      (data) => {
+        console.log('Received open auctions data:', data);
+        this.portfoliosOnAuction = data;
+      },
+      (error) => {
+        console.error('Error fetching open auctions', error);
+        this.errorMessage = 'Error fetching open auctions data';
+      }
+    );
   }
 }

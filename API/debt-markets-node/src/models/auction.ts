@@ -1,6 +1,6 @@
-import { DataTypes, Model } from "sequelize";
-import sequelize from "../database";
-import DebtPortfolio from "./debtPortfolio";
+import { Model, DataTypes } from 'sequelize';
+import sequelize from '../database';
+import DebtPortfolio from './debtPortfolio';
 
 class Auction extends Model {
   public id!: number;
@@ -8,21 +8,19 @@ class Auction extends Model {
   public startDate!: Date;
   public endDate!: Date;
   public winningBid!: number;
+  public status!: string;
+  public createdAt!: Date;
+  public updatedAt!: Date;
 }
 
 Auction.init(
   {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
     portfolioId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: DebtPortfolio,
-        key: "id",
+        key: 'id',
       },
     },
     startDate: {
@@ -35,17 +33,16 @@ Auction.init(
     },
     winningBid: {
       type: DataTypes.FLOAT,
-      allowNull: true,
+    },
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: 'pending',
     },
   },
   {
     sequelize,
-    modelName: "Auction",
-    tableName: "auctions",
+    modelName: 'Auction',
   }
 );
-
-DebtPortfolio.hasMany(Auction, { foreignKey: "portfolioId" });
-Auction.belongsTo(DebtPortfolio, { foreignKey: "portfolioId" });
 
 export default Auction;

@@ -1,6 +1,7 @@
 <section class="closed-auctions">
   <h2>Closed Portfolios</h2>
-  <table>
+  <div *ngIf="closedPortfolios.length === 0">No Closed NPL Portfolios Auctions Yet</div>
+  <table *ngIf="closedPortfolios.length > 0">
     <thead>
       <tr>
         <th>Portfolio Name</th>
@@ -10,8 +11,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let portfolio of closedPortfolios">
-        <td>{{ portfolio.name }}</td>
-        <td>{{ portfolio.finalPrice }}</td>
+        <td>{{ portfolio.portfolioName }}</td>
+        <td>{{ portfolio.winningBid }}</td>
         <td>{{ portfolio.dateSold | date }}</td>
       </tr>
     </tbody>

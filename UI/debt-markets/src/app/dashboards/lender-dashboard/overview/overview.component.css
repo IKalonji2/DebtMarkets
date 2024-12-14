@@ -38,3 +38,27 @@
       background-color: aqua;
     }
   }
+
+  .portfolio_description {
+    font-size: small;
+    font-style: italic;
+    color: aliceblue;
+  }
+
+  table {
+    background-color: blanchedalmond;
+    width: 100%;
+  }
+
+  table, th, td {
+    border: none;
+    color: black;
+  }
+
+  th, td {
+    text-align: start;
+  }
+.portfolios, .auction-history {
+  display: inline-block;
+  margin: auto;
+}

@@ -1,3 +1,6 @@
+import json
+import os
+import sys
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
@@ -11,9 +14,10 @@ def preprocess_data(file_path):
     
     data = data.fillna(0)
 
-    features = data[['outstandingAmount', 'borrowersCount', 'defaultHistory', 'loanDuration']]
-    target = data['riskCategory']
-    
+    # Update column names to match your dataset
+    features = data[['loan_amount', 'repayment_rate', 'default_history', 'income_level', 'credit_score']]
+    target = data['repayment_probability']  # Assuming this is your target variable
+     
     return features, target
 
 def train_model(training_data_path):
@@ -34,28 +38,72 @@ def train_model(training_data_path):
     joblib.dump(model, 'loan_evaluation_model.pkl')
     joblib.dump(scaler, 'scaler.pkl')
 
+
 def evaluate_portfolio(file_path):
-    model = joblib.load('loan_evaluation_model.pkl')
-    scaler = joblib.load('scaler.pkl')
+    try:
+        data = pd.read_csv(file_path)
+        
+        data.columns = data.columns.str.lower().str.replace(' ', '_')
 
-    features, _ = preprocess_data(file_path)
-    features_scaled = scaler.transform(features)
+        required_columns = ['loan_amount', 'repayment_rate', 'default_history', 'income_level', 'credit_score']
+        for col in required_columns:
+            if col not in data.columns:
+                raise ValueError(f'Missing required column: {col}')
+        
+        predictions = [1 if rate > 0.5 else 0 for rate in data['repayment_rate']]
+        probabilities = [0.6 if pred == 1 else 0.4 for pred in predictions]  
 
-    predictions = model.predict(features_scaled)
-    probabilities = model.predict_proba(features_scaled)
-    
-    portfolio_value = features['outstandingAmount'].sum()
-    risk_distribution = pd.Series(predictions).value_counts(normalize=True).to_dict()
+        risk_categories = {'low': 0, 'medium': 0, 'high': 0}
+        for prob in probabilities:
+            if prob <= 0.33:
+                risk_categories['low'] += 1
+            elif 0.33 < prob <= 0.66:
+                risk_categories['medium'] += 1
+            else:
+                risk_categories['high'] += 1
+        
+        total_predictions = len(probabilities)
+        risk_distribution = {
+            category: count / total_predictions if total_predictions > 0 else 0.0
+            for category, count in risk_categories.items()
+        }
 
-    evaluation = {
-        'portfolioValue': portfolio_value,
-        'riskDistribution': risk_distribution,
-        'predictions': predictions.tolist(),
-        'probabilities': probabilities.tolist(),
-    }
-    
-    return evaluation
+        portfolio_value = data['loan_amount'].sum()
+
+        income_mean = data['income_level'].mean()
+        credit_mean = data['credit_score'].mean()
+        
+        if income_mean > 50000 and credit_mean > 750:
+            rating = 'A'
+        elif 30000 < income_mean <= 50000 and 650 < credit_mean <= 750:
+            rating = 'B'
+        else:
+            rating = 'C'
+
+        result = {
+            'portfolioValue': int(portfolio_value),
+            'riskDistribution': {k: float(v) for k, v in risk_distribution.items()},
+            'predictions': predictions,
+            'probabilities': probabilities,
+            'rating': rating,
+            'loans': data.to_dict('records')  # Include the original loan details
+        }
+
+        def convert_numpy_objects(obj):
+            if isinstance(obj, (np.int64, np.float64)):
+                return obj.item()
+            if isinstance(obj, list):
+                return [convert_numpy_objects(item) for item in obj]
+            if isinstance(obj, dict):
+                return {k: convert_numpy_objects(v) for k, v in obj.items()}
+            return obj
+
+        return convert_numpy_objects(result)
+
+    except Exception as e:
+        return {'error': str(e)}
 
 if __name__ == "__main__":
-    result = evaluate_portfolio('loan_portfolio.csv')
-    print(result)
+    file_path = sys.argv[1]  
+    result = evaluate_portfolio(file_path)
+    print(json.dumps(result))

@@ -25,19 +25,20 @@ export class LenderDashboardAPIService {
  
 
   getPortfolios(): Observable<any> {
+    console.log(`${this.apiUrl}/lender/portfolios`);
     return this.http.get(`${this.apiUrl}/lender/portfolios`, {
       headers: this.getAuthHeaders(),
     });
   }
 
-  getAuctions(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/auctions`, {
+  getActiveAuctions():Observable<any>  {
+    return this.http.get(`${this.apiUrl}/lender/auctions-active`, {
       headers: this.getAuthHeaders(),
     });
   }
 
-  startAuction(auctionData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/auctions`, auctionData, {
+  getClosedAuctions() {
+    return this.http.get<any[]>(`${this.apiUrl}/lender/auctions-closed`, {
       headers: this.getAuthHeaders(),
     });
   }
@@ -53,7 +54,8 @@ export class LenderDashboardAPIService {
     });
   }
   evaluateLoanBook(formData: FormData): Observable<any> {
-    return this.http.post(`${this.apiUrl}/evaluate-loan-book`, formData, {
+    console.log(formData)
+    return this.http.post(`${this.apiUrl}/lender/evaluate-loan-book`, formData, {
       headers: this.getAuthHeaders(),
     });
   }

@@ -2,8 +2,6 @@ import axios from "axios";
 import { Request, Response, NextFunction } from "express";
 
 export const authenticate = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
-  // const token = req.headers.authorization?.split(" ")[1];
-  console.log("DebtMarkets - Authorization Header:", req.headers['authorization']);
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -23,6 +21,7 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
     }
 
     (req as any).user = response.data.payload;
+    console.log("do you have user id ? ",response.data.payload)
     next();
   } catch (error) {
     if (axios.isAxiosError(error)) {

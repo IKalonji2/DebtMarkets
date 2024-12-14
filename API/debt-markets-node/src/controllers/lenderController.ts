@@ -5,9 +5,7 @@ import Earnings from "../models/earnings";
 import { Op } from "sequelize";
 
 export const getLenderOverview = async (req: Request, res: Response): Promise<any> => {
-  console.log("User in request:", (req as any).user);
-
-  try {
+   try {
     const lenderId = (req as any).user?.id;
     if (!lenderId) {
       return res.status(400).json({ error: "Lender ID not found in the request" });

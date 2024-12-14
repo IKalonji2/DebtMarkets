@@ -2,3 +2,16 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow';
     color: white;
 }
+table {
+    background-color: blanchedalmond;
+    width: 100%;
+  }
+
+table, th, td {
+    border: none;
+    color: black;
+}
+
+th, td {
+    text-align: start;
+}

@@ -5,9 +5,9 @@ import bodyParser from "body-parser";
 // import dotenv from "dotenv";
 import sequelize from "./database";
 import lenderRoutes from "./routes/lenderRoutes";
-import auctionRoutes from "./routes/auctionRoutes";
+// import auctionRoutes from "./routes/auctionRoutes";
 import earningRoutes from "./routes/earningRoutes";
-import loanBookRoutes from "./routes/loanBookRoutes";
+// import loanBookRoutes from "./routes/loanBookRoutes";
 
 // dotenv.config();
 
@@ -23,9 +23,9 @@ app.use(bodyParser.json());
 
 // Routes
 app.use("/lender", lenderRoutes);
-app.use("/auctions", auctionRoutes);
+// app.use("/auctions", auctionRoutes);
 app.use("/earnings", earningRoutes);
-app.use('/api', loanBookRoutes);
+// app.use('/ai', loanBookRoutes);
 
 // Health Check
 app.get("/health", (req, res) => {
