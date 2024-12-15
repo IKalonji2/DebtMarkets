@@ -5,7 +5,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { CollectorDashboardComponent } from './collector-dashboard.component';
 import { OverviewComponent } from './overview/overview.component';
 import { ActiveBidsComponent } from './active-bids/active-bids.component';
-import { PerformanceComponent } from './performance/performance.component';
+import { RecoveriesComponent } from './recoveries/recoveries.component';
 import { CollectorDashboardRoutingModule } from './collector-dashboard-routing.module';
 
 @NgModule({
@@ -13,7 +13,7 @@ import { CollectorDashboardRoutingModule } from './collector-dashboard-routing.m
     CollectorDashboardComponent,
     OverviewComponent,
     ActiveBidsComponent,
-    PerformanceComponent,
+    RecoveriesComponent,
   ],
   imports: [
     CommonModule,

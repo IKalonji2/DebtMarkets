@@ -14,17 +14,16 @@ def preprocess_data(file_path):
     
     data = data.fillna(0)
 
-    # Update column names to match your dataset
     features = data[['loan_amount', 'repayment_rate', 'default_history', 'income_level', 'credit_score']]
-    target = data['repayment_probability']  # Assuming this is your target variable
-     
+    target = data['repayment_probability'] 
     return features, target
+
+import json
 
 def train_model(training_data_path):
     features, target = preprocess_data(training_data_path)
-    
     X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.2, random_state=42)
-    
+
     scaler = StandardScaler()
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
@@ -33,10 +32,19 @@ def train_model(training_data_path):
     model.fit(X_train_scaled, y_train)
 
     y_pred = model.predict(X_test_scaled)
-    print("Model Accuracy:", accuracy_score(y_test, y_pred))
+    accuracy = accuracy_score(y_test, y_pred)
+
+    metrics = {
+        "accuracy": accuracy,
+        "model_version": "1.0",
+    }
+    with open("training_metrics.json", "w") as metrics_file:
+        json.dump(metrics, metrics_file)
 
     joblib.dump(model, 'loan_evaluation_model.pkl')
     joblib.dump(scaler, 'scaler.pkl')
+
+    print("Model Accuracy:", accuracy)
 
 
 def evaluate_portfolio(file_path):
@@ -80,13 +88,19 @@ def evaluate_portfolio(file_path):
         else:
             rating = 'C'
 
+        # Example tokenization logic
+        num_tokens = 100  # Default number of tokens
+        token_value = portfolio_value / num_tokens
+
         result = {
             'portfolioValue': int(portfolio_value),
             'riskDistribution': {k: float(v) for k, v in risk_distribution.items()},
             'predictions': predictions,
             'probabilities': probabilities,
             'rating': rating,
-            'loans': data.to_dict('records')  # Include the original loan details
+            'tokenValue': float(token_value),
+            'numTokens': int(num_tokens),
+            'loans': data.to_dict('records')
         }
 
         def convert_numpy_objects(obj):

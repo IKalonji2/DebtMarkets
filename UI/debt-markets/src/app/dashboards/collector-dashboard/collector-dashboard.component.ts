@@ -9,7 +9,7 @@ export class CollectorDashboardComponent implements OnInit{
   
   sideNavItems = [
     { label: 'Overview', link: '/collector-dashboard/overview' },
-    { label: 'Performance', link: '/collector-dashboard/performance' },
+    { label: 'Recoveries', link: '/collector-dashboard/recoveries' },
     { label: 'Active Bids', link: '/collector-dashboard/active-bids' },
     { label: 'Tokens', link: '/collector-dashboard/tokens' },
   ];

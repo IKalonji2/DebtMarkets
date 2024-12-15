@@ -11,14 +11,14 @@
     grid-row: 1 / -1;
     background-color: #000;
     color: #fff;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
     /* position: fixed; */
   }
   
   .main-content {
     grid-column: 2;
     padding: 1rem;
-    overflow-y: auto;
+    /* overflow-y: auto; */
   }
   
   .main-content h2 {

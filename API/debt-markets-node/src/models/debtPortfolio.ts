@@ -1,6 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../database";
 import Auction from "./auction";
+import TokenBundle from "./tokenizationBundle";
 
 class DebtPortfolio extends Model {
   public id!: number;
@@ -8,14 +9,16 @@ class DebtPortfolio extends Model {
   public portfolioName!: string;
   // public loanType!: string;
   public description!: string;
-  public bookValue!: number; // Total value of the loan book
-  public portfolioValue!: number | null; // AI-evaluated value
-  public riskDistribution!: { [key: string]: number } | null; // Risk levels as a JSON object
-  public predictions!: number[] | null; // AI predictions per loan
-  public probabilities!: number[][] | null; // Probabilities from the AI model
-  public rating!: string | null; // Bank rating, e.g., 'A', 'B', etc.
-  public status!: "pending" | "onAuction" | "closed";
-  public evaluatedAt!: Date; // Timestamp for evaluation
+  public bookValue!: number;
+  public portfolioValue!: number | null;
+  public riskDistribution!: { [key: string]: number } | null;
+  public predictions!: number[] | null;
+  public probabilities!: number[][] | null;
+  public rating!: string | null;
+  public status!: "pending" | "onAuction" | "closed" | "tokenized" | "evaluated";
+  public tokenValue?: number;
+  public numTokens?: number;
+  public evaluatedAt!: Date;
 }
 
 DebtPortfolio.init(
@@ -46,7 +49,8 @@ DebtPortfolio.init(
     },
     portfolioValue: {
       type: DataTypes.FLOAT,
-      allowNull: true,
+      allowNull: false,
+      defaultValue: 0,
     },
     riskDistribution: {
       type: DataTypes.JSON,
@@ -65,7 +69,7 @@ DebtPortfolio.init(
       allowNull: true, // 'A', 'B', 'C', etc.
     },
     status: {
-      type: DataTypes.ENUM("pending", "onAuction", "closed"),
+      type: DataTypes.ENUM("pending", "evaluated", "active", "onAuction", "closed", "tokenized"),
       defaultValue: "pending",
     },
     evaluatedAt: {
@@ -83,5 +87,6 @@ DebtPortfolio.init(
 DebtPortfolio.hasMany(Auction, { foreignKey: 'portfolioId' });
 Auction.belongsTo(DebtPortfolio, { foreignKey: 'portfolioId' });
 
-
+DebtPortfolio.hasMany(TokenBundle, { foreignKey: 'portfolioId' });
+TokenBundle.belongsTo(DebtPortfolio, { foreignKey: 'portfolioId' });
 export default DebtPortfolio;

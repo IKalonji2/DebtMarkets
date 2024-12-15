@@ -54,9 +54,22 @@ export class LenderDashboardAPIService {
     });
   }
   evaluateLoanBook(formData: FormData): Observable<any> {
-    console.log(formData)
     return this.http.post(`${this.apiUrl}/lender/evaluate-loan-book`, formData, {
       headers: this.getAuthHeaders(),
     });
+  }
+  tokenizePortfolio(portfolioId: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/lender/tokenize`, { portfolioId,
+      headers: this.getAuthHeaders(),
+     });
+    
+  }
+
+  putUpForAuction(portfolioId: string): Observable<any> {
+    console.log(portfolioId);
+    
+    return this.http.post(`${this.apiUrl}/lender/auction`, { portfolioId,     
+      headers: this.getAuthHeaders(),
+     });
   }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+
 import { LenderDashboardAPIService } from '../../../services/lender-dashboard.service';
 
 @Component({
@@ -13,7 +15,10 @@ export class OverviewComponent implements OnInit {
   errorMessage: string = '';
   earnings: any;
 
-  constructor(private lenderService: LenderDashboardAPIService) {}
+  constructor(
+    private lenderService: LenderDashboardAPIService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.fetchOverview();
@@ -58,5 +63,30 @@ export class OverviewComponent implements OnInit {
         console.error('Error fetching earnings:', error);
       }
     );
+  }
+  onTokenize(portfolioId: string): void {
+    this.lenderService.tokenizePortfolio(portfolioId).subscribe({
+      next: () => {
+        this.toastr.success('Portfolio tokenized successfully.');
+        this.loadPortfolios();
+      },
+      error: (err) => {
+        console.error(err);
+        this.toastr.error('Failed to tokenize portfolio.');
+      },
+    });
+  }
+
+  onAuction(portfolioId: string): void {
+    this.lenderService.putUpForAuction(portfolioId).subscribe({
+      next: () => {
+        this.toastr.success('Portfolio is now up for auction.');
+        this.loadPortfolios();
+      },
+      error: (err) => {
+        console.error(err);
+        this.toastr.error('Failed to put portfolio up for auction.');
+      },
+    });
   }
 }

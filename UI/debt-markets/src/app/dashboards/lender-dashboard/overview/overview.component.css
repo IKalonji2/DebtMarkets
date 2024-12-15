@@ -5,7 +5,7 @@
 
 .card {
     max-height: 250px;
-    max-width: 200px;
+    max-width: auto;
     background-color: 	#222;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -31,7 +31,7 @@
     background-color: aquamarine;
     box-shadow: 0 4px 6px whitesmoke;
   
-    width: 100px;
+    width: 80px;
     height: 40px;
   
     &:hover {

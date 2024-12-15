@@ -11,6 +11,7 @@
             <th>Value</th>
             <th>Rating</th>
             <th>Status</th>
+            <!-- <th>Action</th> -->
           </tr>
           <tr>
             <td>${{ portfolio.portfolioValue }}</td>
@@ -18,6 +19,20 @@
             <td>{{ portfolio.status }}</td>
           </tr>
         </table>
+        <div class="button-wrapper">
+          <button 
+            *ngIf="portfolio.status === 'evaluated'" 
+            (click)="onTokenize(portfolio.id)" 
+            class="btn btn-primary">
+            Tokenize
+          </button>
+          <button 
+            *ngIf="portfolio.status === 'tokenized'" 
+            (click)="onAuction(portfolio.id)" 
+            class="btn btn-success">
+            Auction
+          </button>
+        </div>
         <!-- <div class="button-wrapper">
           <button (click)="startAuction(portfolio.id)">Start Auction</button>
         </div> -->
@@ -31,7 +46,8 @@
         <h4>Auction for Portfolio {{ auction.portfolioId }}</h4>
         <p>Start Date: {{ auction.startDate | date }}</p>
         <p>End Date: {{ auction.endDate | date }}</p>
-        <p>Winning Bid: ${{ auction.winningBid  }} || {{'Not yet concluded'}}</p>
+        <p *ngIf="auction.winningBid > 0">Winning Bid: ${{ auction.winningBid }}</p>
+        <p>Winning Bid: {{'Not concluded'}}</p>
       </div>
     </div>
 

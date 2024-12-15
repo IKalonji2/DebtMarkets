@@ -1,5 +1,5 @@
 import path from "path";
-import { exec } from "child_process";
+import { exec, spawn } from "child_process";
 
 import csvParser from "csv-parser";
 import fs from "fs";
@@ -44,3 +44,36 @@ export const evaluatePortfolioWithAI = async (filePath: string): Promise<any> =>
     });
   };
   
+// export const evaluatePortfolioWithAI = async (filePath: string): Promise<any> => {
+//   const pythonProcess = spawn("python3", ["path/to/ai_engine.py", filePath]);
+// const aiEnginePath = path.resolve(__dirname, '../ai/ai_engine.py'); // Ensure this points to the correct location.
+
+
+//   return new Promise((resolve, reject) => {
+//       let result = "";
+//       pythonProcess.stdout.on("data", (data) => {
+//           result += data.toString();
+//       });
+
+//       pythonProcess.stderr.on("data", (data) => {
+//           console.error(`AI Engine Error: ${data}`);
+//       });
+
+//       pythonProcess.on("close", (code) => {
+//           try {
+//               if (code === 0) {
+//                   const parsedResult = JSON.parse(result);
+//                   if (parsedResult.error) {
+//                       reject(new Error(parsedResult.error));
+//                   } else {
+//                       resolve(parsedResult);
+//                   }
+//               } else {
+//                   reject(new Error("AI Engine process failed."));
+//               }
+//           } catch (error) {
+//               reject(new Error(`Failed to parse AI response: ${(error as Error).message}`));
+//           }
+//       });
+//   });
+// };

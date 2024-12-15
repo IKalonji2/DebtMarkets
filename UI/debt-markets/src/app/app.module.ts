@@ -3,8 +3,13 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { CookieService } from 'ngx-cookie-service';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AboutComponent } from './dashboards/about/about.component';
@@ -50,7 +55,9 @@ import { CollectorDashboardModule } from './dashboards/collector-dashboard/colle
     LenderDashboardModule,
     TraderDashboardModule,
     CollectorDashboardModule,
-    RouterModule
+    RouterModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [AuthAPIService, CookieService],
   bootstrap: [AppComponent],
