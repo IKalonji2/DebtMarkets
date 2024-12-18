@@ -1,4 +1,5 @@
 <section class="trades">
+  <h1>Open Trades</h1>
   <table>
     <thead>
       <tr>
@@ -13,23 +14,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let bundle of loanBundles" [routerLink]="['/trader-dashboard/open-trades', bundle.bundleId]">
-        <td>{{ bundle.bundleId }}</td>
-        <td>{{ bundle.collectionAgent }}</td>
-        <td>{{ bundle.totalValue | currency }}</td>
-        <td [ngClass]="{
-          'low-risk': bundle.riskLevel === 'low',
-          'medium-risk': bundle.riskLevel === 'medium',
-          'high-risk': bundle.riskLevel === 'high'
-        }">{{ bundle.riskLevel | titlecase }}</td>
-        <td [ngClass]="{
-          'good-performance': bundle.performanceStatus === 'good',
-          'bad-performance': bundle.performanceStatus === 'bad',
-          'neutral-performance': bundle.performanceStatus === 'neutral'
-        }">{{ bundle.performanceStatus }}</td>
-        <td>{{ bundle.loansCount }}</td>
-        <td>{{ bundle.lastUpdated | date:'short' }}</td>
-        <td><button (click)="investInBundle(bundle.bundleId)">Invest</button></td>
+      <tr *ngFor="let trade of trades" (click)="selectTrade(trade)">
+        <td>{{ trade.bundleId }}</td>
+        <td>{{ trade.collectionAgent }}</td>
+        <td>{{ trade.totalValue | currency }}</td>
+        <td>{{ trade.riskLevel | titlecase }}</td>
+        <td>{{ trade.performanceStatus }}</td>
+        <td>{{ trade.loansCount }}</td>
+        <td>{{ trade.lastUpdated | date: 'short' }}</td>
+        <td>
+          <button [routerLink]="['/open-trades', trade.bundleId]">View Chart</button>
+        </td>
       </tr>
     </tbody>
   </table>

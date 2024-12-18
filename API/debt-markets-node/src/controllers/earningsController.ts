@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Earnings from "../models/earnings";
-import DebtPortfolio from "../models/debtPortfolio";
+import DebtPortfolio from "../models/debt-portfolio.model";
 
 export const getEarnings = async (req: Request, res: Response): Promise<any> => {
   try {
@@ -16,10 +16,10 @@ export const getEarnings = async (req: Request, res: Response): Promise<any> => 
       where: { portfolioId: portfolioIds },
     });
 
-    res.json(earnings);
+    return res.json(earnings);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Error fetching earnings data" });
+    return res.status(500).json({ error: "Error fetching earnings data" });
   }
 };
 
@@ -33,9 +33,9 @@ export const createEarning = async (req: Request, res: Response): Promise<any> =
 
     const newEarning = await Earnings.create({ portfolioId, amount, date });
 
-    res.status(201).json(newEarning);
+    return res.status(201).json(newEarning);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Error creating earning" });
+    return res.status(500).json({ error: "Error creating earning" });
   }
 };

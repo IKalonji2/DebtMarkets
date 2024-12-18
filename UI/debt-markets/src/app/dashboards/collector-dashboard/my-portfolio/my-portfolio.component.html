@@ -1,0 +1,32 @@
+<h1>My Portfolio</h1>
+
+<section>
+  <h2>Owned Tokens</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Portfolio ID</th>
+        <th>Value</th>
+        <th>Created At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let token of tokens">
+        <td>{{ token.id }}</td>
+        <td>{{ token.portfolioId }}</td>
+        <td>{{ token.value | currency }}</td>
+        <td>{{ token.createdAt | date }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Value Trends</h2>
+  <div *ngIf="valueTrends?.length">
+    <canvas id="portfolioChart"></canvas>
+  </div>
+  <p *ngIf="!valueTrends?.length">Loading portfolio data...</p>
+  
+</section>

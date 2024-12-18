@@ -1,65 +1,28 @@
-.trades {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+h1 {
+  color: white;
 }
+.trades {
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 20px 0;
-  background-color: blanchedalmond;
+  margin: 0 auto;
+  background-color: antiquewhite;
 }
 
 th, td {
-  padding: 10px;
-  text-align: left;
+  text-align: center;
+  padding: 8px;
   border: 1px solid #ddd;
-}
-
-.low-risk {
-  color: green;
-}
-
-.medium-risk {
-  color: orange;
-}
-
-.high-risk {
-  color: red;
-}
-
-.good-performance {
-  color: green;
-}
-
-.bad-performance {
-  color: red;
-}
-
-.neutral-performance {
-  color: gray;
-}
-
-.fas {
-  margin-left: 5px;
-}
-
-.fas.fa-arrow-up {
-  color: green;
-}
-
-.fas.fa-arrow-down {
-  color: red;
-}
-
-.fas.fa-minus {
-  color: gray;
 }
 
 button {
   padding: 8px 16px;
-  background-color: blue;
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
@@ -67,5 +30,5 @@ button {
 }
 
 button:hover {
-  background-color: darkblue;
+  background-color: #0056b3;
 }

@@ -4,7 +4,9 @@ import { OverviewComponent } from "./overview/overview.component";
 import { CollectorDashboardComponent } from "./collector-dashboard.component";
 import { RecoveriesComponent } from "./recoveries/recoveries.component";
 import { ActiveBidsComponent } from "./active-bids/active-bids.component";
-import { TokensComponent } from "./tokens/tokens.component";
+import { NotificationsComponent } from "./notifications/notifications.component";
+import { MyPortfolioComponent } from "./my-portfolio/my-portfolio.component";
+import { BidHistoryComponent } from "./bid-history/bid-history.component";
 
 
 const routes: Routes = [
@@ -15,7 +17,9 @@ const routes: Routes = [
       { path: 'overview', component: OverviewComponent },
       { path: 'recoveries', component: RecoveriesComponent },
       { path: 'active-bids', component: ActiveBidsComponent },
-      { path: 'tokens', component: TokensComponent },
+      { path: 'my-portfolio', component: MyPortfolioComponent },
+      { path: 'notifications',component: NotificationsComponent},
+      { path: 'bid-history', component: BidHistoryComponent},
       { path: '', redirectTo: 'overview', pathMatch: 'full' },
     ],
   },

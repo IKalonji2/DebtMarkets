@@ -1,6 +1,41 @@
-<div class="overview-container">
+<!-- <div class="overview-container">
     <h2>Performance Overview</h2>
     <p><strong>Total Amount Invested:</strong> {{ overviewData.totalAmountInvested }}</p>
     <p><strong>Total Return:</strong> {{ overviewData.totalReturn }}</p>
     <p><strong>Remaining Amount:</strong> {{ overviewData.remainingAmount }}</p>
+  </div> -->
+
+  <div class="dashboard">
+    <h1>Collector Dashboard</h1>
+  
+    <section class="metrics">
+      <h2>Performance Metrics</h2>
+      <div class="metric-cards">
+        <div class="card" *ngFor="let metric of performanceMetrics">
+          <h3>{{ metric.title }}</h3>
+          <p>{{ metric.value }}</p>
+        </div>
+      </div>
+    </section>
+  
+    <section class="quick-links">
+      <h2>Quick Links</h2>
+      <div class="quick-link-buttons">
+        <button mat-raised-button color="primary" *ngFor="let link of quickLinks" (click)="navigateTo(link.route)">
+          {{ link.label }}
+        </button>
+      </div>
+    </section>
+  
+    <section class="updates">
+      <h2>Updates</h2>
+      <div class="update-cards">
+        <div class="card" *ngFor="let update of updates">
+          <h3>{{ update.title }}</h3>
+          <p>{{ update.message }}</p>
+          <small>{{ update.timestamp | date: 'short' }}</small>
+        </div>
+      </div>
+    </section>
   </div>
+  

@@ -1,5 +1,51 @@
-<div class="recoveries-container">
-    <h2>Recoveries Data</h2>
-    <p><strong>Total Revenue:</strong> {{ recoveriesData.totalRevenue }}</p>
-    <p><strong>Status:</strong> {{ recoveriesData.recoveriesStatus }}</p>
+<div class="recovery-container">
+  <h2>Submit Recovery</h2>
+  <form class="recovery-form" (ngSubmit)="submitRecoveryForm()" #recoveryForm="ngForm">
+    <div class="form-group">
+      <label for="file">Upload Recovery Document:</label>
+      <input id="file" type="file" (change)="onFileChange($event)" required />
+    </div>
+    <div class="form-group">
+      <label for="amountRecovered">Amount Recovered:</label>
+      <input
+        id="amountRecovered"
+        type="number"
+        placeholder="Enter amount"
+        [(ngModel)]="amountRecovered"
+        name="amountRecovered"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="portfolioId">Portfolio ID:</label>
+      <input
+        id="portfolioId"
+        type="text"
+        placeholder="Enter portfolio ID"
+        [(ngModel)]="portfolioId"
+        name="portfolioId"
+        required
+      />
+    </div>
+    <button
+      class="submit-btn"
+      type="submit"
+      [disabled]="!selectedFile || amountRecovered <= 0"
+    >
+      Submit Recovery
+    </button>
+  </form>
 </div>
+
+<div *ngIf="recoveriesData.length > 0; else noRecoveries">
+  <h2>Recovery History</h2>
+  <div class="recovery-history">
+    <div class="history-item" *ngFor="let recovery of recoveriesData">
+      <p>{{ recovery.details }}</p>
+    </div>
+  </div>
+</div>
+
+<ng-template #noRecoveries>
+  <p>No recovery records available.</p>
+</ng-template>

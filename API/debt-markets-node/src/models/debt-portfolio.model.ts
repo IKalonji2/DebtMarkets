@@ -6,8 +6,8 @@ import TokenBundle from "./tokenizationBundle";
 class DebtPortfolio extends Model {
   public id!: number;
   public lenderId!: number;
+  public collectorId!: number;
   public portfolioName!: string;
-  // public loanType!: string;
   public description!: string;
   public bookValue!: number;
   public portfolioValue!: number | null;
@@ -15,10 +15,11 @@ class DebtPortfolio extends Model {
   public predictions!: number[] | null;
   public probabilities!: number[][] | null;
   public rating!: string | null;
-  public status!: "pending" | "onAuction" | "closed" | "tokenized" | "evaluated";
+  public status!: "pending" | "onAuction" | "closed" | "tokenized" | "evaluated" | "inProgress";
   public tokenValue?: number;
   public numTokens?: number;
   public evaluatedAt!: Date;
+  public recoveredAmount?: number;
 }
 
 DebtPortfolio.init(
@@ -32,14 +33,14 @@ DebtPortfolio.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    collectorId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
     portfolioName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // loanType: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // },
     description: {
       type: DataTypes.TEXT,
     },
@@ -66,16 +67,21 @@ DebtPortfolio.init(
     },
     rating: {
       type: DataTypes.STRING,
-      allowNull: true, // 'A', 'B', 'C', etc.
+      allowNull: true,
     },
     status: {
-      type: DataTypes.ENUM("pending", "evaluated", "active", "onAuction", "closed", "tokenized"),
+      type: DataTypes.ENUM("pending", "evaluated", "active", "onAuction", "closed", "tokenized", "inProgress"),
       defaultValue: "pending",
     },
     evaluatedAt: {
       type: DataTypes.DATE,
       allowNull: true,
     },
+    recoveredAmount: {  
+      type: DataTypes.FLOAT,
+      allowNull: false, 
+      defaultValue: 0
+    }
   },
   {
     sequelize,
@@ -89,4 +95,5 @@ Auction.belongsTo(DebtPortfolio, { foreignKey: 'portfolioId' });
 
 DebtPortfolio.hasMany(TokenBundle, { foreignKey: 'portfolioId' });
 TokenBundle.belongsTo(DebtPortfolio, { foreignKey: 'portfolioId' });
+
 export default DebtPortfolio;

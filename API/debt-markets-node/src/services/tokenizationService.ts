@@ -1,6 +1,6 @@
 import { Transaction } from "sequelize";
 import TokenBundle from "../models/tokenizationBundle";
-import DebtPortfolio from "../models/debtPortfolio";
+import DebtPortfolio from "../models/debt-portfolio.model";
 
 export const calculateTokenValue = async (portfolioId: number, numTokens: number): Promise<number> => {
     const portfolio = await DebtPortfolio.findByPk(portfolioId);

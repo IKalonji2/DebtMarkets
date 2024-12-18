@@ -1,0 +1,57 @@
+<h1>Bid History</h1>
+<section class="bid-history-section">
+  <h2>All Bids</h2>
+  <div *ngIf="bids.length === 0"><i>No Bid History </i></div>
+  <!-- Bid History Table -->
+  <table  *ngIf="bids.length > 0" class="bid-history-table">
+    <thead>
+      <tr>
+        <!-- <th>Bid ID</th> -->
+        <th>Portfolio</th>
+        <th>Bid Amount</th>
+        <th>Status</th>
+        <th>Bid Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data will be populated dynamically here -->
+      <tr *ngFor="let bid of bids">
+        <!-- <td>{{ bid.id }}</td> -->
+        <td>{{ bid.portfolioId }}</td>
+        <td>{{ bid.bidAmount | currency }}</td>
+        <td>{{ bid.status }}</td>
+        <td>{{ bid.bidDate | date: 'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section *ngIf="bids.length > 0" class="filters-section">
+  <h2>Filters</h2>
+  <form (ngSubmit)="applyFilters()">
+    <div class="filter">
+      <label for="portfolioId">Portfolio ID:</label>
+      <input id="portfolioId" [(ngModel)]="filters.portfolioId" name="portfolioId" type="text" placeholder="Enter Portfolio ID">
+    </div>
+    <div class="filter">
+      <label for="minBidAmount">Min Bid Amount:</label>
+      <input id="minBidAmount" [(ngModel)]="filters.minBidAmount" name="minBidAmount" type="number" placeholder="Enter Min Amount">
+    </div>
+    <div class="filter">
+      <label for="maxBidAmount">Max Bid Amount:</label>
+      <input id="maxBidAmount" [(ngModel)]="filters.maxBidAmount" name="maxBidAmount" type="number" placeholder="Enter Max Amount">
+    </div>
+    <div class="filter">
+      <label for="status">Status:</label> <br>
+      <select id="status" [(ngModel)]="filters.status" name="status">
+        <option value="">Select Status</option>
+        <option value="open">Open</option>
+        <option value="closed">Closed</option>
+        <option value="pending">Pending</option>
+      </select>
+    </div>
+    <div class="button-wrapper">
+      <button type="submit">Apply Filters</button>
+    </div>
+  </form>
+</section>

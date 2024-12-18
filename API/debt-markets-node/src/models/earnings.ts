@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../database";
-import DebtPortfolio from "./debtPortfolio";
+import DebtPortfolio from "./debt-portfolio.model";
 
 class Earnings extends Model {
   public id!: number;

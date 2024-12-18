@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import multer from "multer";
 import fs from "fs";
-import DebtPortfolio from "../models/debtPortfolio"; // Assuming this is the model for portfolios
+import DebtPortfolio from "../models/debt-portfolio.model"; // Assuming this is the model for portfolios
 import LoanDetails from "../models/loanDetailsModel"; // Assuming this is the model for individual loan details
 import { createDebtPortfolio } from "../services/loanServices"; // Assuming these are the services
 import { evaluatePortfolioWithAI } from "../services/aiEvaluationService"; // AI evaluation service
@@ -36,10 +36,8 @@ export const evaluateLoanBookController = async (req: Request, res: Response): P
             return res.status(400).json({ error: "Invalid totalAmount. Must be a positive number." });
         }
 
-        // Step 1: Create and save portfolio record
         const newPortfolio = await createDebtPortfolio(file.path, bookName, parseFloat(totalAmount), lenderId);
 
-        // Step 2: AI Evaluation
         const evaluationResults = await evaluatePortfolioWithAI(file.path);
         const { portfolioValue, tokenValue, numTokens } = evaluationResults;
 
@@ -60,12 +58,12 @@ export const evaluateLoanBookController = async (req: Request, res: Response): P
         });
 
         // Respond with success
-        res.status(200).json({
+        return res.status(200).json({
             message: "Loan book evaluated and saved successfully",
             portfolio: newPortfolio,
         });
     } catch (error) {
         console.error("Error evaluating loan book:", (error as Error).message, (error as Error).stack);
-        res.status(500).json({ error: "Failed to evaluate loan book." });
+        return res.status(500).json({ error: "Failed to evaluate loan book." });
     }
 };

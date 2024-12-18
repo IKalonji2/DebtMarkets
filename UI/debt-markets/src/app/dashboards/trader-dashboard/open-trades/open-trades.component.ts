@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OpenLoanBundlesService } from '../../../services/open-loan-bundles.service';
+import { Trade } from '../../../models/trade.model';
 
 @Component({
   selector: 'app-open-trades',
@@ -7,13 +8,13 @@ import { OpenLoanBundlesService } from '../../../services/open-loan-bundles.serv
   styleUrls: ['./open-trades.component.css'],
 })
 export class OpenTradesComponent implements OnInit {
-  loanBundles: any[] = [];
+  trades: Trade[] = [];
 
   constructor(private openLoanBundlesService: OpenLoanBundlesService) {}
 
   ngOnInit(): void {
-    this.openLoanBundlesService.getOpenLoanBundles().subscribe((data) => {
-      this.loanBundles = data;
+    this.openLoanBundlesService.getOpenLoanBundlesForTrader().subscribe((data:Trade[]) => {
+      this.trades = data;
     });
   }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { jwtDecode } from 'jwt-decode';
@@ -10,22 +10,20 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthService {
   private tokenKey = 'auth-token';
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
-  private roleSubject = new BehaviorSubject<string | null>(null); // New subject for role
+  private roleSubject = new BehaviorSubject<string | null>(null);
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
-  role$ = this.roleSubject.asObservable(); // Observable for role
+  role$ = this.roleSubject.asObservable();
 
   constructor(private router: Router, private http: HttpClient) {}
 
   storeToken(token: string): void {
-    console.log('Storing token:', token);  // Debugging
-    document.cookie = `${this.tokenKey}=${token}; path=/`;  // Store token in cookie
+    document.cookie = `${this.tokenKey}=${token}; path=/`;
     this.isLoggedInSubject.next(true);
-    this.updateRole(); // Update role whenever the token is stored
+    this.updateRole();
   }
 
   getToken(): string | null {
     const match = document.cookie.match(new RegExp('(^| )' + this.tokenKey + '=([^;]+)'));
-    console.log('Retrieved token:', match ? match[2] : null);  // Debugging
     return match ? match[2] : null;
   }
 
@@ -42,7 +40,6 @@ export class AuthService {
     }
   }
 
-  // Update the role subject whenever the role changes
   updateRole(): void {
     const role = this.getRole();
     this.roleSubject.next(role);
@@ -58,7 +55,7 @@ export class AuthService {
     try {
       this.storeToken(accessToken);
       const role = this.getRole();
-      this.updateRole(); // Update role when login happens
+      this.updateRole();
       switch (role) {
         case 'collector':
           this.router.navigate(['/collector-dashboard']);
@@ -81,7 +78,15 @@ export class AuthService {
   logout(): void {
     document.cookie = `${this.tokenKey}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
     this.isLoggedInSubject.next(false);
-    this.roleSubject.next(null); // Reset role on logout
+    this.roleSubject.next(null);
     this.router.navigate(['/login']);
+  }
+
+  getTraderDetails(): Observable<any> {
+    return this.http.get<any>('/api/trader/details'); 
+  }
+
+  getTraderBalance(): Observable<number> {
+    return this.http.get<number>('/api/trader/balance');
   }
 }

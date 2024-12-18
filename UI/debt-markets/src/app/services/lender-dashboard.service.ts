@@ -60,7 +60,7 @@ export class LenderDashboardAPIService {
   }
   tokenizePortfolio(portfolioId: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/lender/tokenize`, { portfolioId,
-      headers: this.getAuthHeaders(),
+      // headers: this.getAuthHeaders(),
      });
     
   }

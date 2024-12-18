@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import DebtPortfolio from "../models/debtPortfolio";
+import DebtPortfolio from "../models/debt-portfolio.model";
 import Auction from "../models/auction";
 import Earnings from "../models/earnings";
 import { Op } from "sequelize";
@@ -42,13 +42,13 @@ export const getLenderOverview = async (req: Request, res: Response): Promise<an
       },
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       portfolios,
       auctions,
       earnings,
     });
   } catch (error) {
     console.error("Error fetching lender overview data:", error);
-    res.status(500).json({ error: "An unexpected error occurred while fetching lender overview data." });
+    return res.status(500).json({ error: "An unexpected error occurred while fetching lender overview data." });
   }
 };

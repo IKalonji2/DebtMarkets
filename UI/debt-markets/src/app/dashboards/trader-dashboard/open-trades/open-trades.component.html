@@ -10,12 +10,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let bundle of loanBundles">
-        <td>{{ bundle.bundleId }}</td>
-        <td>{{ bundle.totalValue | currency }}</td>
-        <td>{{ bundle.riskLevel }}</td>
+      <tr *ngFor="let trade of trades">
+        <td>{{ trade.bundleId }}</td>
+        <td>{{ trade.totalValue | currency }}</td>
+        <td>{{ trade.riskLevel }}</td>
         <td>
-          <button (click)="investInBundle(bundle.bundleId)">Invest</button>
+          <button (click)="investInBundle(trade.bundleId)">Invest</button>
         </td>
       </tr>
     </tbody>

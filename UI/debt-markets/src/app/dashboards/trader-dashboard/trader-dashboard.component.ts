@@ -29,7 +29,7 @@ export class TraderDashboardComponent implements OnInit {
     this.checkMobileView();
 
     // Fetch open loan bundles
-    this.openLoanBundlesService.getOpenLoanBundles().subscribe((data) => {
+    this.openLoanBundlesService.getAllOpenLoanBundles().subscribe((data:any) => {
       this.loanBundles = data;
     });
   }

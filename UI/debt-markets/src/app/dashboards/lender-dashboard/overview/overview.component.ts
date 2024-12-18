@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { ModalService } from '../../../services/modal.service';  // Import ModalService
 import { LenderDashboardAPIService } from '../../../services/lender-dashboard.service';
+import { TokenizeModalComponent } from '../../../shared/tokenize-modal/tokenize-modal.component'; 
+import { TokenizeService } from '../../../services/tokenize.service';
 
 @Component({
   selector: 'app-overview',
@@ -17,7 +21,10 @@ export class OverviewComponent implements OnInit {
 
   constructor(
     private lenderService: LenderDashboardAPIService,
-    private toastr: ToastrService
+    private tokenizeService: TokenizeService,
+    private toastr: ToastrService,
+    // private modalService: ModalService ,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +36,7 @@ export class OverviewComponent implements OnInit {
     this.lenderService.getPortfolios().subscribe(
       (data) => {
         this.portfolios = data;
-        console.log(this.portfolios)
+        console.log(this.portfolios);
       },
       (error) => {
         this.errorMessage = 'Error fetching portfolios.';
@@ -52,7 +59,7 @@ export class OverviewComponent implements OnInit {
         this.errorMessage = 'Error fetching overview data';
       }
     );
-  } 
+  }
 
   fetchEarnings(): void {
     this.lenderService.getEarnings().subscribe(
@@ -64,16 +71,16 @@ export class OverviewComponent implements OnInit {
       }
     );
   }
-  onTokenize(portfolioId: string): void {
-    this.lenderService.tokenizePortfolio(portfolioId).subscribe({
-      next: () => {
-        this.toastr.success('Portfolio tokenized successfully.');
-        this.loadPortfolios();
-      },
-      error: (err) => {
-        console.error(err);
-        this.toastr.error('Failed to tokenize portfolio.');
-      },
+
+  openTokenizeModal(documentId: number, totalValue: number): void {
+    
+    const modalRef = this.modalService.open(TokenizeModalComponent);
+    modalRef.componentInstance.totalValue = totalValue;
+
+    modalRef.componentInstance.onTokenize.subscribe(({ numTokens }: { numTokens: number }) => {
+      this.tokenizeService.tokenizeDocument(documentId, 'loanbook',totalValue, numTokens).subscribe(response => {
+        console.log('Tokenization Successful:', response);
+      });
     });
   }
 

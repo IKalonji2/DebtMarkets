@@ -3,7 +3,7 @@ import sequelize from "../database";
 
 class LoanDetails extends Model {
   public id!: number;
-  public portfolioId!: number; // Foreign key to DebtPortfolio
+  public portfolioId!: number;
   public loanAmount!: number;
   public repaymentRate!: number;
   public defaultHistory!: number;

@@ -1,0 +1,67 @@
+h1,h2,h3 {
+    color: white;
+}
+.bid-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+  }
+  
+  .bid-history-table th, .bid-history-table td {
+    padding: 8px;
+    border: 1px solid #333;
+    text-align: left;
+  }
+  
+  .filters-section form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+
+    width: 200px;
+    height: 250px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px #0000001a;
+    padding: 0.5rem;
+  }
+  
+  .filter {
+    margin-bottom: 10px;
+  }
+  
+  .filter label {
+    margin-right: 10px;
+  }
+  
+  .button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    margin-top: 1rem;
+  
+  }
+  
+  .button-wrapper button {
+    color: black;
+    font-family: Uchronia;
+  
+    background-color: aquamarine;
+    box-shadow: 0 4px 6px whitesmoke;
+  
+    width: 100px;
+    height: 40px;
+  
+    &:hover {
+      background-color: aqua;
+    }
+  }
+  select {
+    width: 177px;
+    height: 20px;
+  }

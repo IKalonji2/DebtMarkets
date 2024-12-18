@@ -10,6 +10,7 @@ import { AuctionsViewComponent } from './dashboards/auctions-view/auctions-view.
 import { TradingViewComponent } from './dashboards/trading-view/trading-view.component';
 import { AuctionDetailsComponent } from './dashboards/auction-details/auction-details.component';
 import { TradesDashboardComponent } from './dashboards/trades-dashboard/trades-dashboard.component';
+import { TradingChartComponent } from './components/trading-chart/trading-chart.component';
 // import { LenderDashboardComponent } from './dashboards/lender-dashboard/lender-dashboard.component';
 // import { CollectionAgentDashboardComponent } from './dashboards/collection-agent-dashboard/collection-agent-dashboard.component';
 // import { TraderDashboardComponent } from './dashboards/trader-dashboard/trader-dashboard.component';
@@ -56,6 +57,7 @@ const routes: Routes = [
     path: 'trades',
     component: TradesDashboardComponent
   },
+  { path: 'open-trades/:bundleId', component: TradingChartComponent },
   { 
     path: 'lender-dashboard', 
     loadChildren: () => import('./dashboards/lender-dashboard/lender-dashboard.module').then(m => m.LenderDashboardModule) 

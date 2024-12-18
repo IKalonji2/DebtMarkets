@@ -1,6 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize  from "../database";
-import DebtPortfolio from "./debtPortfolio";
+import DebtPortfolio from "./debt-portfolio.model";
 
 class TokenBundle extends Model {}
 

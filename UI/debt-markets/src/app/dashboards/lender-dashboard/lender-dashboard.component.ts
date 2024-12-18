@@ -8,7 +8,7 @@ import { LenderDashboardAPIService } from '../../services/lender-dashboard.servi
 })
 export class LenderDashboardComponent implements OnInit {
   sideNavItems = [
-    { label: 'Overview', link: '/lender-dashboard/overview' },
+    { label: 'Dashboard', link: '/lender-dashboard/overview' },
     { label: 'Submit Portfolio', link: '/lender-dashboard/submit-portfolio' },
     { label: 'On Auction', link: '/lender-dashboard/on-auction' },
     { label: 'Closed', link: '/lender-dashboard/closed' }

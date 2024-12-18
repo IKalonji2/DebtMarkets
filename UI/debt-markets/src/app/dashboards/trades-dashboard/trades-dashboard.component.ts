@@ -1,26 +1,28 @@
-import { Component } from '@angular/core';
-import { LoanBundle } from '../../models/loan-bundle.model';
+import { Component, OnInit } from '@angular/core';
+import { Trade } from '../../models/trade.model';
 import { OpenLoanBundlesService } from '../../services/open-loan-bundles.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trades-dashboard',
   templateUrl: './trades-dashboard.component.html',
-  styleUrl: './trades-dashboard.component.css'
+  styleUrls: ['./trades-dashboard.component.css'],
 })
-export class TradesDashboardComponent {
-  loanBundles: LoanBundle[] = [];
-
-  constructor(private openLoanBundlesService: OpenLoanBundlesService) {}
+export class TradesDashboardComponent implements OnInit {
+  trades: Trade[] = [];
+  constructor(
+    private openLoanBundlesService: OpenLoanBundlesService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.openLoanBundlesService.getOpenLoanBundles().subscribe((data) => {
-      this.loanBundles = data;
+    this.openLoanBundlesService.getAllOpenLoanBundles().subscribe((data: Trade[]) => {
+      this.trades = data;
     });
   }
 
-  investInBundle(bundleId: string) {
-    // Logic to invest in the selected loan bundle, e.g., navigate to an investment form or trigger an investment API call
-    console.log(`Investing in bundle: ${bundleId}`);
+  selectTrade(trade: Trade): void {
+    console.log('Selected trade:', trade);
+    this.router.navigate(['/trade-detail', trade.bundleId]);
   }
-
 }

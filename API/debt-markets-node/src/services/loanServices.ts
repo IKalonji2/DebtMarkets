@@ -1,5 +1,5 @@
 import Auction from "../models/auction";
-import DebtPortfolio from "../models/debtPortfolio";
+import DebtPortfolio from "../models/debt-portfolio.model";
 import LoanDetails from "../models/loanDetailsModel";
 import { evaluatePortfolioWithAI, parseCsvToLoans } from "../services/aiEvaluationService";
 

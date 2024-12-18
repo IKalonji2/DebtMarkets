@@ -7,6 +7,9 @@ import sequelize from "./database";
 import lenderRoutes from "./routes/lenderRoutes";
 // import auctionRoutes from "./routes/auctionRoutes";
 import earningRoutes from "./routes/earningRoutes";
+import collectorRoutes from "./routes/collectorRoutes";
+import openTradesRoutes from "./routes/open-trades.routes"
+import tokenizeRoute from "./routes/tokenizeRoutes"
 // import loanBookRoutes from "./routes/loanBookRoutes";
 
 // dotenv.config();
@@ -23,6 +26,9 @@ app.use(bodyParser.json());
 
 // Routes
 app.use("/lender", lenderRoutes);
+app.use('/collector', collectorRoutes);
+app.use('/api', openTradesRoutes);
+app.use('/api', tokenizeRoute);
 // app.use("/auctions", auctionRoutes);
 app.use("/earnings", earningRoutes);
 // app.use('/ai', loanBookRoutes);

@@ -22,7 +22,7 @@
         <div class="button-wrapper">
           <button 
             *ngIf="portfolio.status === 'evaluated'" 
-            (click)="onTokenize(portfolio.id)" 
+            (click)="openTokenizeModal(portfolio.id, portfolio.totalValue)"
             class="btn btn-primary">
             Tokenize
           </button>

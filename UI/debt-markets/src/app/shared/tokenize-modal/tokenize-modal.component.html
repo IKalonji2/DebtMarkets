@@ -1,0 +1,22 @@
+<div class="modal">
+    <h2>Tokenize Document</h2>
+    <form (ngSubmit)="submit()">
+      <label>Total Value:</label>
+      <input type="number" [value]="totalValue" readonly />
+  
+      <label>Number of Tokens:</label>
+      <input
+        type="number"
+        [(ngModel)]="numTokens"
+        name="numTokens"
+        (input)="calculateTokenValue()"
+        required
+      />
+  
+      <label>Token Value:</label>
+      <input type="number" [value]="tokenValue" readonly />
+  
+      <button type="submit">Tokenize</button>
+    </form>
+  </div>
+  

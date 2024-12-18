@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { TraderService } from '../../../services/trader.service';
 
 @Component({
-  selector: 'app-tokens',
-  templateUrl: './tokens.component.html',
-  styleUrls: ['./tokens.component.css']
+  selector: 'app-notifications',
+  templateUrl: './notifications.component.html',
+  styleUrls: ['./notifications.component.css']
 })
-export class TokensComponent implements OnInit {
+export class NotificationsComponent implements OnInit {
   tokens: any[] = [];
 
   ngOnInit(): void {

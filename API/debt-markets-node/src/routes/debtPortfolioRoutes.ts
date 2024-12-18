@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
-import { createDebtPortfolio } from "../controllers/debtPortfolioController";
+// import { createDebtPortfolio } from "../controllers/debtPortfolioController";
 import { evaluateLoanBookRoute } from "../controllers/loanBookController"; // File upload middleware
-import DebtPortfolio from "../models/debtPortfolio";
+import DebtPortfolio from "../models/debt-portfolio.model";
 import { validateToken } from "../middlewares/authenticate";
 
 const router = express.Router();
@@ -22,11 +22,11 @@ router.get(
   }
 );
 
-router.post(
-  "/portfolios",
-  validateToken,
-  evaluateLoanBookRoute, 
-  createDebtPortfolio 
-);
+// router.post(
+//   "/portfolios",
+//   validateToken,
+//   evaluateLoanBookRoute, 
+//   createDebtPortfolio 
+// );
 
 export default router;

@@ -1,4 +1,7 @@
 pandas
+camelot-py[cv]
+reportlab
+tabula
 numpy
 scikit-learn
 joblib

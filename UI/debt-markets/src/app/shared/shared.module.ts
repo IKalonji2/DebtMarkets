@@ -5,12 +5,14 @@ import { RouterModule } from '@angular/router';  // Ensure this import is here
 import { SideNavComponent } from '../components/side-nav/side-nav.component';
 import { TradingChartComponent } from '../components/trading-chart/trading-chart.component';
 import { ReusableFormComponent } from '../components/reusable-form/reusable-form.component';
+import { TokenizeModalComponent } from './tokenize-modal/tokenize-modal.component';
 
 @NgModule({
   declarations: [
     SideNavComponent,
     TradingChartComponent,
-    ReusableFormComponent
+    ReusableFormComponent,
+    TokenizeModalComponent
   ],
   imports: [
     CommonModule,

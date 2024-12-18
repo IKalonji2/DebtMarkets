@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { CollectorDashboardComponent } from './dashboards/collector-dashboard/collector-dashboard.component';
 import { CollectorDashboardModule } from './dashboards/collector-dashboard/collector-dashboard.module';
+import { MyPortfolioComponent } from './dashboards/collector-dashboard/my-portfolio/my-portfolio.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { CollectorDashboardModule } from './dashboards/collector-dashboard/colle
     AuctionDetailsComponent,
     TradesDashboardComponent,
     LenderDashboardComponent,
+    MyPortfolioComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import { CollectorDashboardModule } from './dashboards/collector-dashboard/colle
     TraderDashboardModule,
     CollectorDashboardModule,
     RouterModule,
+    NgbModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
